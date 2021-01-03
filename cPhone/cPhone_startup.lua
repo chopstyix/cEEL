@@ -1,10 +1,13 @@
 os.loadAPI("UI")
+
+doFile("settings/ports.lua")
 local monX, monY = term.getSize()
 -- 26 20
-TURTLEPORT = 69 -- nice
-CPHONEPORT = 70
-local modem = peripheral.wrap("back")
-modem.open(CPHONEPORT)
+
+-- TURTLEPORT = 69 -- nice
+-- CPHONEPORT = 70
+-- local modem = peripheral.wrap("back")
+-- modem.open(CPHONEPORT)
 
 function removeSuffix(string, suffix)
     return string:gsub(suffix, "")
