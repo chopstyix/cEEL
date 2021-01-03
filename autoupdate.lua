@@ -1,14 +1,15 @@
-ignore = { 
+local ignore = { 
     disk = true,
     rom = true
 }
 
 shell.run("github","chopstyix","cEEL")
 print("Detecting source...")
-
+shell.run("cd","")
 if turtle then
     print("I'm a turtle!")
-    for _,filename in fs.list("") do
+
+    for _,filename in fs.list("")
         if not ignore[filename] then
             fs.delete(filename)
             fs.copy("downloads/cEEL/cTurtle/"..filename,filename) 
