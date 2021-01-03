@@ -4,13 +4,12 @@ local ignore = {
 }
 
 shell.run("github","chopstyix","cEEL")
+shell.run("clear")
 print("Detecting source...")
-shell.run("cd","")
+os.sleep(0.5)
 if turtle then
     print("I'm a turtle!")
-
-    for _,filename in fs.list("")
-        if not ignore[filename] then
+    for _,filename in ipairs(fs.list("")) do
             fs.delete(filename)
             fs.copy("downloads/cEEL/cTurtle/"..filename,filename) 
         end
