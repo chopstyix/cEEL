@@ -71,7 +71,7 @@ function initialize() -- Return true or false based pn item check
     return (xCheck and yCheck and zCheck)
 end
 
-local dig = {
+local dig_Table = {
     ["front"] = function() if turtle.detect() then turtle.dig() end end,
     ["up"] = function() if turtle.detectUp() then turtle.digUp() end end,
     ["down"] = function() if turtle.detectDown() then turtle.digDown() end end,
@@ -115,7 +115,7 @@ function diggySlice()
     local data = turtle.getItemDetail(TORCH)
     if vertical == 0 then
         diggySwipe()
-        diggyUp()
+        dig("up")
         turtle.up()
         if data.name == "minecraft:torch" and currentTorchIteration > torchDistance then
             turtle.select(TORCH)
@@ -123,16 +123,16 @@ function diggySlice()
             currentTorchIteration = 0
         end
         diggySwipe()
-        diggyUp()
+        dig("up")
         turtle.up()
         diggySwipe()
         vertical = 1
     elseif vertical == 1 then
         -- diggySwipe()
-        diggyDown()
+        dig("down")
         turtle.down()
         -- diggySwipe()
-        diggyDown()
+        dig("down")
         turtle.down()
         -- diggySwipe()
         vertical = 0
