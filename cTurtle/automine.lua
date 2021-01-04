@@ -126,7 +126,7 @@ function diggySlice()
         turtle.select(TORCH)
         turtle.turnRight()
         turtle.turnRight()
-        turtle.placeDown()
+        turtle.place()
         turtle.turnRight()
         turtle.turnRight()
         currentTorchIteration = 0
