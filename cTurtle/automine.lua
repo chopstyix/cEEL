@@ -199,10 +199,6 @@ if initialize() then
         inspectFloor()
         diggySlice() -- 2 Fuel Cost
         moveForward() -- 1 Fuel Cost
-        
-        -- Return to bottom position
-        turtle.down()
-        turtle.down()
         currentTorchIteration = currentTorchIteration + 1
 
     until (currentDistance > maxDistance)
