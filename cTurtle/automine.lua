@@ -78,7 +78,7 @@ local dig_Table = {
 }
 
 function dig(direction)
-    local f = dig[direction]
+    local f = dig_Table[direction]
     if f then  
         f()
     else
