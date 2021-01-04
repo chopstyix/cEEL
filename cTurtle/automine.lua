@@ -14,11 +14,11 @@ TODO: Incorporate something with GPS
 -- Capture argument
 local arg = { ... }
 -- Settings
-torchDistance = 10 -- Torch Spacing
+torchDistance = 7 -- Torch Spacing
 
 -- Local Variables
-horizontal = 0 -- 0 begins digging from left, 1 begins from the right
-vertical = 0  -- 0 begins digging from bottom, 1 begins from top
+-- horizontal = 0 -- 0 begins digging from left, 1 begins from the right
+-- vertical = 0  -- 0 begins digging from bottom, 1 begins from top
 currentTorchIteration = 1
 currentDistance = 0
 dist = 1
@@ -113,30 +113,18 @@ end
 
 function diggySlice()
     local data = turtle.getItemDetail(TORCH)
-    if vertical == 0 then
-        diggySwipe()
-        dig("up")
-        turtle.up()
-        if data.name == "minecraft:torch" and currentTorchIteration > torchDistance then
-            turtle.select(TORCH)
-            turtle.placeDown()
-            currentTorchIteration = 0
-        end
-        diggySwipe()
-        dig("up")
-        turtle.up()
-        diggySwipe()
-        vertical = 1
-    elseif vertical == 1 then
-        -- diggySwipe()
-        dig("down")
-        turtle.down()
-        -- diggySwipe()
-        dig("down")
-        turtle.down()
-        -- diggySwipe()
-        vertical = 0
+    diggySwipe()
+    dig("up")
+    turtle.up()
+    if data.name == "minecraft:torch" and currentTorchIteration > torchDistance then
+        turtle.select(TORCH)
+        turtle.placeDown()
+        currentTorchIteration = 0
     end
+    diggySwipe()
+    dig("up")
+    turtle.up()
+    diggySwipe()
 end
 
 -- function toStartingPosition()
@@ -212,25 +200,19 @@ if initialize() then
     
         -- toStartingPosition() -- Removed, unnecessary code
         diggySlice() -- 2 Fuel Cost
-        if vertical == 0 then -- If starting from the bottom position, inspect the block below turtle 
-            inspectFloor()
-        end
+        inspectFloor()
         moveForward() -- 1 Fuel Cost
-        if vertical == 0 then
-            inspectFloor()
-        end
+        
+        -- Return to bottom position
+        turtle.down()
+        turtle.down()
         currentTorchIteration = currentTorchIteration + 1
 
     until (currentDistance > maxDistance)
 
 
     -- Return to middle position
-    if vertical == 1 then
-        turtle.down()
-    elseif vertical == 0 then
-        turtle.up()
-    end
-
+    turtle.up()
     turtle.turnRight()
     turtle.turnRight()
 
