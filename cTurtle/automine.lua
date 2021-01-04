@@ -29,21 +29,6 @@ COBBLESTONE = 15
 TORCH = 16
 LASTITEM = 13
 
-local digDirection = {
-        ["front"] = function() if turtle.detect() then turtle.Dig() end,
-        ["up"] = function() if turtle.detectUp() then turtle.digUp() end,
-        ["down"] = function() if turtle.detectDown() then turtle.digDown() end,
-}
-
-function dig(direction)
-    local f = dig[direction]
-    if f then  
-        f()
-    else
-        print("Case Default!")
-    end
-end
-
 function initialize() -- Return true or false based pn item check
     -- Check for items
     local x = turtle.getItemDetail(STORAGECHEST)
@@ -86,23 +71,20 @@ function initialize() -- Return true or false based pn item check
     return (xCheck and yCheck and zCheck)
 end
 
--- function digFront()
---     while turtle.detect() do
---         turtle.dig()
---     end
--- end
+local dig = {
+    ["front"] = function() if turtle.detect() then turtle.dig() end end,
+    ["up"] = function() if turtle.detectUp() then turtle.digUp() end end,
+    ["down"] = function() if turtle.detectDown() then turtle.digDown() end end,
+}
 
--- function diggyUp()
---     while turtle.detectUp() do
---         turtle.digUp()
---     end
--- end
-
--- function diggyDown()
---     while turtle.detectDown() do
---         turtle.digDown()
---     end
--- end
+function dig(direction)
+    local f = dig[direction]
+    if f then  
+        f()
+    else
+        print("Case Default!")
+    end
+end
 
 function diggySwipe()
         turtle.turnLeft()
