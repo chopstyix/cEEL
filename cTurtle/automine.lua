@@ -72,9 +72,9 @@ function initialize() -- Return true or false based pn item check
 end
 
 local dig_Table = {
-    ["front"] = function() if turtle.detect() then turtle.dig() end end,
-    ["up"] = function() if turtle.detectUp() then turtle.digUp() end end,
-    ["down"] = function() if turtle.detectDown() then turtle.digDown() end end,
+    ["front"] = function() while turtle.detect() do turtle.dig() end end,
+    ["up"] = function() while turtle.detectUp() do turtle.digUp() end end,
+    ["down"] = function() while turtle.detectDown() do turtle.digDown() end end,
 }
 
 function dig(direction)
