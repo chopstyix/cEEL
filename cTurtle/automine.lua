@@ -199,8 +199,8 @@ if initialize() then
         end
     
         -- toStartingPosition() -- Removed, unnecessary code
-        diggySlice() -- 2 Fuel Cost
         inspectFloor()
+        diggySlice() -- 2 Fuel Cost
         moveForward() -- 1 Fuel Cost
         
         -- Return to bottom position
@@ -212,6 +212,7 @@ if initialize() then
 
 
     -- Return to middle position
+    inspectFloor()
     turtle.up()
     turtle.turnRight()
     turtle.turnRight()
