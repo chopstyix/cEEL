@@ -113,27 +113,25 @@ end
 
 function diggySlice()
     local data = turtle.getItemDetail(TORCH)
-    diggySwipe()
     dig("up")
     turtle.up()
+    dig("up")
+    turtle.up()
+    diggySwipe()
+    turtle.down()
+    diggySwipe()
+    turtle.down()
+    diggySwipe()
     if data.name == "minecraft:torch" and currentTorchIteration > torchDistance then
         turtle.select(TORCH)
+        turtle.turnRight()
+        turtle.turnRight()
         turtle.placeDown()
+        turtle.turnRight()
+        turtle.turnRight()
         currentTorchIteration = 0
     end
-    diggySwipe()
-    dig("up")
-    turtle.up()
-    diggySwipe()
 end
-
--- function toStartingPosition()
---     if horizontal == 1 then
---         turtle.turnRight()
---     elseif horizontal == 0 then
---         turtle.turnLeft()
---     end
--- end
 
 function checkInventoryFull()
     if turtle.getItemCount(LASTITEM) > 0 then
@@ -190,7 +188,7 @@ if initialize() then
 
     print("Digging for a distance of:", maxDistance)
 
-    -- Main Mining Loop
+    -- MAIN MINING LOOP
     repeat
         -- local currentFuelLevel = turtle.getFuelLevel() -- Do be used to report back to cPhone in a later update
         
@@ -198,7 +196,6 @@ if initialize() then
             returnItemsChest()
         end
     
-        -- toStartingPosition() -- Removed, unnecessary code
         inspectFloor()
         diggySlice() -- 2 Fuel Cost
         moveForward() -- 1 Fuel Cost
