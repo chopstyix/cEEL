@@ -44,7 +44,7 @@ function dig(direction)
     end
 end
 
-function initialize()
+function initialize() -- Return true or false based pn item check
     -- Check for items
     local x = turtle.getItemDetail(STORAGECHEST)
     local y = turtle.getItemDetail(COBBLESTONE)
@@ -105,21 +105,13 @@ end
 -- end
 
 function diggySwipe()
-    if horizontal == 0 then
+        turtle.turnLeft()
         dig("front")
         turtle.turnRight()
         dig("front")
         turtle.turnRight()
         dig("front")
-        horizontal = 1
-    elseif horizontal == 1 then
-        dig("front")
         turtle.turnLeft()
-        dig("front")
-        turtle.turnLeft()
-        dig("front")
-        horizontal = 0
-    end
 end
 
 function inspectFloor()
@@ -133,22 +125,8 @@ function inspectFloor()
 end
 
 function moveForward()
-    if horizontal == 0 then
-        turtle.turnRight()
-        turtle.forward()
-    elseif horizontal == 1 then
-        turtle.turnLeft()
-        turtle.forward()
-    end
+    turtle.forward()
     currentDistance = currentDistance + 1
-end
-
-function diggyToLeft()
-    dig("front")
-    turtle.turnLeft()
-    dig("front")
-    turtle.turnLeft()
-    dig("front")
 end
 
 function diggySlice()
@@ -179,13 +157,13 @@ function diggySlice()
     end
 end
 
-function toStartingPosition()
-    if horizontal == 1 then
-        turtle.turnRight()
-    elseif horizontal == 0 then
-        turtle.turnLeft()
-    end
-end
+-- function toStartingPosition()
+--     if horizontal == 1 then
+--         turtle.turnRight()
+--     elseif horizontal == 0 then
+--         turtle.turnLeft()
+--     end
+-- end
 
 function checkInventoryFull()
     if turtle.getItemCount(LASTITEM) > 0 then
@@ -229,31 +207,30 @@ function returnItemsChest()
     turtle.turnRight()
 end
 
--- Initialize
 if initialize() then
     print("Initialization successful!")
-    maxDistanceFuel = math.floor(turtle.getFuelLevel() / 3)
-    maxDistanceTorch = turtle.getItemCount(TORCH) * torchDistance
-    if arg[1] == nil then
-        maxDistance = math.min(maxDistanceFuel, maxDistanceTorch)
+    maxDistance_Fuel = math.floor(turtle.getFuelLevel() / 3)
+    maxDistance_Torch = turtle.getItemCount(TORCH) * torchDistance
+    if arg[1] == nil then -- If user doesn't specify a distance it will choose values based off _Fuel & _Torch
+        maxDistance = math.min(maxDistance_Fuel, maxDistance_Torch)
     else
-        maxDistanceUser = math.floor(arg[1])
-        maxDistance = math.min(maxDistanceFuel, maxDistanceTorch, maxDistanceUser)
+        maxDistance_User = math.floor(arg[1])
+        maxDistance = math.min(maxDistance_Fuel, maxDistance_Torch, maxDistance_User)
     end
 
     print("Digging for a distance of:", maxDistance)
 
+    -- Main Mining Loop
     repeat
-        local currentFuelLevel = turtle.getFuelLevel()
+        -- local currentFuelLevel = turtle.getFuelLevel() -- Do be used to report back to cPhone in a later update
         
-        -- Check Inventory if full
-        if checkInventoryFull() then
+        if checkInventoryFull() then -- Check for full inventory
             returnItemsChest()
         end
     
-        toStartingPosition()
+        -- toStartingPosition() -- Removed, unnecessary code
         diggySlice() -- 2 Fuel Cost
-        if vertical == 0 then
+        if vertical == 0 then -- If starting from the bottom position, inspect the block below turtle 
             inspectFloor()
         end
         moveForward() -- 1 Fuel Cost

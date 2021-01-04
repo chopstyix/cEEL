@@ -13,11 +13,17 @@ if turtle then
     for _,filename in ipairs(fs.list("downloads/cEEL/cTurtle/")) do
             fs.delete(filename)
             fs.copy("downloads/cEEL/cTurtle/"..filename,filename) 
-        end
     end
 elseif pocket then
     print("I'm a pocket pc!")
+    for _,filename in ipairs(fs.list("downloads/cEEL/cPhone/")) do
+        fs.delete(filename)
+        fs.copy("downloads/cEEL/cPhone/"..filename,filename) 
+end
 else
     print("I'm a desktop!")
 end
 print("Complete!")
+-- Press and key to continue
+print("Press any key to continue")
+os.pullEvent("key")
