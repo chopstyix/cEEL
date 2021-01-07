@@ -7,6 +7,13 @@ side = "drive_1"
 card_fileName = "disk/key"
 database_fileName ="card_database"
 
+card_name = nil
+drive = nil
+card_id = nil
+user = nil
+value = nil
+key = nil
+
 card_present = false
 
 monitor = peripheral.wrap("left")
@@ -131,6 +138,7 @@ local f =
   ["2"] = function() mathFunds("add") end, -- Add Funds
   ["3"] = function() mathFunds("subtract") end, -- Withdraw Funds
   ["4"] = function() 
+    shell.run("label","set",side,card_name)
     print("Card ejected! Thank you for choosing $nad Inc!") 
     disk.eject(side) 
     loop = false 
@@ -161,7 +169,7 @@ value = getCardInfo("value")
 key = getCardInfo("key")
 
 print("Verifying card...")
-writeKey()
+-- writeKey()
 os.sleep(3)
 -- Pass disk check
 if compareKey() then
