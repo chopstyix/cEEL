@@ -156,11 +156,11 @@ while true do
     print("Card detected")
     break
   else
-    local event, side = os.pullEvent()
+    local event, side = os.pullEvent("disk")
     if event == "disk" then
       print("Disk inserted")
+      break
     end
-    break
   end
 end
 
