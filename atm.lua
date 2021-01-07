@@ -156,9 +156,9 @@ while true do
   end
 end
 
-local user = getCardInfo("user")
-local value = getCardInfo("value")
-local key = getCardInfo("key")
+user = getCardInfo("user")
+value = getCardInfo("value")
+key = getCardInfo("key")
 
 print("Verifying card...")
 writeKey()
