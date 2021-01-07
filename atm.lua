@@ -145,9 +145,7 @@ local f =
   end -- Exit
 }
 
-if localdebug == 1 then
-  writeKey()
-end
+writeKey()
 
 -- Run Loop Display
 print("Insert card")
