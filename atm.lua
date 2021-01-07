@@ -7,7 +7,7 @@ local side = "drive_1"
 local card_fileName = "disk/key"
 local database_fileName ="card_database"
 
-local card_name = disk.getLabel(side)
+card_name = disk.getLabel(side)
 local drive = disk.getMountPath(side)
 local card_id = disk.getID(side)
 local card_present = false
