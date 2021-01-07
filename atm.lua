@@ -1,22 +1,18 @@
-local localdebug = 0
+localdebug = 0
 
-local exchange_rate = 2 
-local exchange_item = "minecraft:diamond"
+exchange_rate = 2 
+exchange_item = "minecraft:diamond"
 
-local side = "drive_1"
-local card_fileName = "disk/key"
-local database_fileName ="card_database"
+side = "drive_1"
+card_fileName = "disk/key"
+database_fileName ="card_database"
 
 card_name = disk.getLabel(side)
-local drive = disk.getMountPath(side)
-local card_id = disk.getID(side)
-local card_present = false
+drive = disk.getMountPath(side)
+card_id = disk.getID(side)
+card_present = false
 
-local user = 0
-local key = 0
-local value = 0
-
-local monitor = peripheral.wrap("left")
+monitor = peripheral.wrap("left")
 
 -- Overwrite variables if debugging
 if localdebug == 1 then
@@ -160,9 +156,10 @@ while true do
   end
 end
 
-user = getCardInfo("user")
-value = getCardInfo("value")
-key = getCardInfo("key")
+local user = getCardInfo("user")
+local value = getCardInfo("value")
+local key = getCardInfo("key")
+
 print("Verifying card...")
 writeKey()
 os.sleep(3)
