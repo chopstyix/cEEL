@@ -162,7 +162,6 @@ while true do
     end
     break
   end
-  break
 end
 
 print("Verifying card...")
