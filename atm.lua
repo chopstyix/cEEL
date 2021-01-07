@@ -145,8 +145,6 @@ local f =
   end -- Exit
 }
 
-writeKey()
-
 -- Run Loop Display
 print("Insert card")
 while true do
@@ -163,6 +161,7 @@ while true do
 end
 
 print("Verifying card...")
+writeKey()
 os.sleep(3)
 -- Pass disk check
 if compareKey() then
