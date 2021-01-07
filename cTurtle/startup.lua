@@ -20,6 +20,7 @@ if modem == nil then
     print("My current fuel level is:",turtle.getFuelLevel())
 else
     -- Wait for rollCall signal from cPhone
+    print("My current fuel level is:",turtle.getFuelLevel())
     print("Waiting for cPhone to connect")
 end
 repeat
