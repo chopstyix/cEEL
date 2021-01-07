@@ -159,9 +159,10 @@ while true do
     local event, side = os.pullEvent()
     if event == "disk" then
       print("Disk inserted")
-      return
     end
+    break
   end
+  break
 end
 
 print("Verifying card...")
