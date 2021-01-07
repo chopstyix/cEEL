@@ -1,5 +1,8 @@
 local localdebug = 0
 
+local exchange_rate = 2 
+local exchange_item = "minecraft:diamond"
+
 local side = "drive_1"
 local card_fileName = "disk/key"
 local database_fileName ="card_database"
@@ -9,9 +12,9 @@ local drive = disk.getMountPath(side)
 local card_id = disk.getID(side)
 local card_present = false
 
-local user = nil
-local key = nil
-local value = nil
+local user = 0
+local key = 0
+local value = 0
 
 local monitor = peripheral.wrap("left")
 
@@ -74,7 +77,7 @@ function makeKey()
   for i=1,v do
     local test = string.byte(card_name,i)
     key = key + test
-    key = math.floor((4.20 + value * key)  / (69 + card_id))
+    key = math.floor((4.20 + value * key)  / (69 + card_id)) -- Super secret hash
   end
   return tostring(key)
 end
@@ -130,7 +133,6 @@ function mathFunds(operator)
 end
 
 local loop = true
-
 local f = 
 {
   ["1"] = function() print("Your balance is: "..value.."$nad") os.sleep(3) end, -- Check Balance
@@ -143,7 +145,10 @@ local f =
   end -- Exit
 }
 
-writeKey()
+if localdebug == 1 then
+  writeKey()
+end
+
 -- Run Loop Display
 print("Insert card")
 while true do
@@ -170,10 +175,6 @@ else
   os.sleep(1)
   return
 end
-
--- Disk is detected --
--- term.redirect(monitor)
--- print("Key: "..getCardInfo("key"))
 
 while loop == true do
   user = getCardInfo("user")
