@@ -7,9 +7,6 @@ side = "drive_1"
 card_fileName = "disk/key"
 database_fileName ="card_database"
 
-card_name = disk.getLabel(side)
-drive = disk.getMountPath(side)
-card_id = disk.getID(side)
 card_present = false
 
 monitor = peripheral.wrap("left")
@@ -18,7 +15,6 @@ monitor = peripheral.wrap("left")
 if localdebug == 1 then
   card_name = "Bromanov_'s Card - 1000$nad" -- Debug
   card_id = 1
-  card_present = true
 end
 
 function findCharKeyIndex(charKey)
@@ -156,6 +152,10 @@ while true do
   end
 end
 
+-- Parse through card data and fill out variables
+card_name = disk.getLabel(side)
+drive = disk.getMountPath(side)
+card_id = disk.getID(side)
 user = getCardInfo("user")
 value = getCardInfo("value")
 key = getCardInfo("key")
