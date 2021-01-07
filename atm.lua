@@ -160,6 +160,9 @@ while true do
   end
 end
 
+user = getCardInfo("user")
+value = getCardInfo("value")
+key = getCardInfo("key")
 print("Verifying card...")
 writeKey()
 os.sleep(3)
