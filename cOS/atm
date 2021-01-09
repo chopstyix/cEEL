@@ -165,6 +165,7 @@ local f =
 }
 
 -- Run Loop Display
+setup()
 while true do
   screen:clear()
   centerText("Insert", 0, colors.white)
