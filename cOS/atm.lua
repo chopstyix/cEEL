@@ -165,8 +165,12 @@ local f =
 }
 
 -- Run Loop Display
-print("Welcome to $nad ATM!")
-print("Please insert card")
+while true do
+  screen:clear()
+  centerText("Insert", 0, colors.white)
+  centerText("Card", 6, colors.white)
+  screen:output()
+end
 
 while true do
   if localdebug == 1 then
@@ -226,9 +230,3 @@ end
 --   end
 -- end
 
-while true do
-  screen:clear()
-  centerText("Insert", 0, colors.white)
-  centerText("Card", 6, colors.white)
-  screen:output()
-end
