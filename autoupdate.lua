@@ -12,13 +12,14 @@ if turtle then
     print("I'm a turtle!")
     for _,filename in ipairs(fs.list("cEEL/cTurtle/")) do
             fs.delete(filename)
-            fs.copy("cEEL/cTurtle/"..filename,"."..filename) 
+            print("Copying..."..filename)
+            fs.copy("cEEL/cTurtle/"..filename,..filename) 
     end
 elseif pocket then
     print("I'm a pocket pc!")
     for _,filename in ipairs(fs.list("cEEL/cPhone/")) do
         fs.delete(filename)
-        fs.copy("cEEL/cPhone/"..filename,"."..filename) 
+        fs.copy("cEEL/cPhone/"..filename,..filename) 
 end
 else
     print("I'm a desktop!")
@@ -27,4 +28,5 @@ end
 print("Complete!")
 -- Press and key to continue
 print("Press any key to continue")
-os.pullEvent("key")
+local key = os.pullEvent("key")
+term.clear()
