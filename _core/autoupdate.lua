@@ -33,7 +33,7 @@ else
         fs.delete(filename)
         print("Copying..."..filename)
         os.sleep(1)
-        fs.copy("cEEL/cPhone/"..filename,filename) 
+        fs.copy("cEEL/cOS/"..filename,filename) 
     end
 end
 print("Grabbing autoupdater")
