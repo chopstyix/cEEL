@@ -5,7 +5,7 @@ local ignore = {
 
 -- shell.run("github","chopstyix","cEEL")
 -- shell.run("clear")
-shell.run("github","chopstyix/cEEL","-a chopstyix")
+shell.run("github","clone","chopstyix/cEEL","-a chopstyix")
 print("Detecting source...")
 os.sleep(0.5)
 if turtle then

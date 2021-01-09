@@ -2,7 +2,7 @@
 
 ## Requirements
 Download the github repo downloader
-pastebin get p8PJVxC4
+pastebin run p8PJVxC4
 
 * 
 *
