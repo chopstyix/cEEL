@@ -13,7 +13,7 @@ functions =
     ["automine"] = function() shell.run("automine") end,
     ["test"] = function() end
 }
-
+term.clear()
 term.setCursorPos(1,1)
 print(turtleName)
 print("Fuel: "..turtle.getFuelLevel())
