@@ -21,6 +21,12 @@ database_fileName ="card_database"
 -- value = nil
 -- key = nil
 
+-- Overwrite variables if debugging
+if localdebug == 1 then
+  card_name = "Bromanov_'s Card - 1000$nad" -- Debug
+  card_id = 1
+end
+
 function setup()
 	buttons = {}
 	surface = dofile("surface")
@@ -39,11 +45,7 @@ function centerText(text, y, color)
 	local tWidth = surface.getTextSize(text, font)
 	screen:drawText(text, font, math.floor((width - tWidth) / 2), y, color)
 end
--- Overwrite variables if debugging
-if localdebug == 1 then
-  card_name = "Bromanov_'s Card - 1000$nad" -- Debug
-  card_id = 1
-end
+
 
 function findCharKeyIndex(charKey)
   local i = 0
@@ -175,6 +177,7 @@ while true do
   centerText("Insert", 0, colors.white)
   centerText("Card", 6, colors.white)
   screen:output()
+  sleep(5)
 end
 
 while true do
