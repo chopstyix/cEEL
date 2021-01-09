@@ -35,6 +35,10 @@ function setup()
   -- redstone.setOutput("top", true)
 end
 
+function centerText(text, y, color)
+	local tWidth = surface.getTextSize(text, font)
+	screen:drawText(text, font, math.floor((width - tWidth) / 2), y, color)
+end
 -- Overwrite variables if debugging
 if localdebug == 1 then
   card_name = "Bromanov_'s Card - 1000$nad" -- Debug
