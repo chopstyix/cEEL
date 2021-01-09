@@ -5,11 +5,18 @@ local modem = peripheral.wrap("left")
 
 modem.open(TURTLEPORT)
 
-function toPhone(message)
-    modem.transmit(CPHONEPORT, TURTLEPORT, message)
-end
+-- function toPhone(message)
+--     modem.transmit(CPHONEPORT, TURTLEPORT, message)
+-- end
+functions = 
+{
+    ["automine"] = function() shell.run("automine") end,
+    ["test"] = function() end
+}
 
-print("Searching for a modem")
+term.setCursorPos(1,1)
+print(turtleName)
+print("Fuel: "..turtle.getFuelLevel())
 os.sleep(1)
 if modem == nil then
     print("Unable to find modem, switching to offline mode")
@@ -17,25 +24,15 @@ if modem == nil then
     os.pullEvent("key")
     shell.run("clear")
     print("Running offline!")
-    print("My current fuel level is:",turtle.getFuelLevel())
 else
     -- Wait for rollCall signal from cPhone
-    print("My current fuel level is:",turtle.getFuelLevel())
     print("Waiting for cPhone to connect")
 end
-repeat
-    local event, modemSide, senderChannel, replyChannel, message, senderDistance = os.pullEvent("modem_message")
-until (message == "rollCall")
-toPhone("ok")
-shell.run("automine")
---     print("My current fuel level is: ",turtle.getFuelLevel())
---     print("Waiting for remote command...")
---     local event, modemSide, senderChannel, replyChannel, message, senderDistance = os.pullEvent("modem_message")
---     if message == "automine" then
---         shell.run("automine")
---         modem.transmit(CPHONEPORT,CPHONEPORT,turtleName.." - Success")
---     else
---         modem.transmit(CPHONEPORT,CPHONEPORT,turtleName.." - Unknown command")
---         shell.run("startup")
---     end
--- end
+
+local event, modemSide, senderChannel, replyChannel, message, senderDistance = os.pullEvent("modem_message")
+local func = f[message]
+if (func) then
+    func()
+else
+    print("Default case!")
+end

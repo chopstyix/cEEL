@@ -1,5 +1,7 @@
-localdebug = 0
+-- TODO: Push data to monitors
+-- TODO: Add touch screen functionality
 
+localdebug = 0
 exchange_rate = 2 
 exchange_item = "minecraft:diamond"
 
@@ -131,6 +133,8 @@ function mathFunds(operator)
   return card_name
 end
 
+
+-- Main Line of Code --
 local loop = true
 local f = 
 {
@@ -146,10 +150,12 @@ local f =
 }
 
 -- Run Loop Display
-print("Insert card")
+print("Welcome to $nad ATM!")
+print("Please insert card")
+
 while true do
   if localdebug == 1 then
-    print("Card detected")
+    print("Debug card detected")
     break
   else
     local event, side = os.pullEvent("disk")
@@ -170,13 +176,14 @@ key = getCardInfo("key")
 
 print("Verifying card...")
 writeKey()
-os.sleep(3)
+os.sleep(1)
+
 -- Pass disk check
 if compareKey() then
   print("Success!")
   os.sleep(1)
 else
-  print("Failed check, ending program.")
+  print("Invalid card, nice try :)")
   os.sleep(1)
   return
 end
