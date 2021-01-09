@@ -14,7 +14,6 @@ if turtle then
     for _,filename in ipairs(fs.list("cEEL/cTurtle/")) do
             fs.delete(filename)
             print("Copying..."..filename)
-            os.sleep(1)
             fs.copy("cEEL/cTurtle/"..filename,filename) 
     end
 elseif pocket then
@@ -23,7 +22,6 @@ elseif pocket then
     for _,filename in ipairs(fs.list("cEEL/cPhone/")) do
         fs.delete(filename)
         print("Copying..."..filename)
-        os.sleep(1)
         fs.copy("cEEL/cPhone/"..filename,filename) 
     end
 else
@@ -32,11 +30,10 @@ else
     for _,filename in ipairs(fs.list("cEEL/cOS/")) do
         fs.delete(filename)
         print("Copying..."..filename)
-        os.sleep(1)
         fs.copy("cEEL/cOS/"..filename,filename) 
     end
 end
-print("Grabbing autoupdater")
+--print("Grabbing autoupdater")
 --shell.run("github","clone","chopstyix/cEEL/_core/autoupdate.lua","-a chopstyix")
 print("Complete!")
 -- Press and key to continue
