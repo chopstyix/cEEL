@@ -1,24 +1,39 @@
 -- TODO: Push data to monitors
 -- TODO: Add touch screen functionality
+local card_name, card_id, user, drive, value, key, monitor, surface, screen, width, height, font, buttons
+
+PAYOUT_FEE = 5
 
 localdebug = 0
 exchange_rate = 2 
-exchange_item = "minecraft:diamond"
+local currencyValues = {
+  ["minecraft:diamond"] = 1
+}
 
 side = "drive_1"
 card_fileName = "disk/key"
 database_fileName ="card_database"
 
-card_name = nil
-drive = nil
-card_id = nil
-user = nil
-value = nil
-key = nil
+-- card_name = nil
+-- drive = nil
+-- card_id = nil
+-- user = nil
+-- value = nil
+-- key = nil
 
-card_present = false
-
-monitor = peripheral.wrap("left")
+function setup()
+	buttons = {}
+	surface = dofile("surface")
+	monitor = peripheral.find("monitor")
+	drive = peripheral.wrap("left")
+	monitor.setTextScale(0.5)
+	term.redirect(monitor)
+  width, height = term.getSize()
+  screen = surface.create(width, height)
+  font = surface.loadFont(surface.load("font"))
+	-- rednet.open("back")
+  -- redstone.setOutput("top", true)
+end
 
 -- Overwrite variables if debugging
 if localdebug == 1 then
@@ -188,27 +203,32 @@ else
   return
 end
 
-while loop == true do
-  user = getCardInfo("user")
-  value = getCardInfo("value")
-  key = getCardInfo("key")
-  term.clear()
-  term.setCursorPos(1,1)
-  print("Hello "..user)
-  print("Your balance is: "..value.."$nad")
-  print("Key: "..key)
-  print("Select an input")
-  print("[1] = Check Balance")
-  print("[2] = Add Funds")
-  print("[3] = Withdraw Funds")
-  print("[4] = Eject card")
-  local user_input = io.read()
-  local func = f[user_input]
-  if (func) then
-    func()
-  else
-    print("Default case!")
-  end
+-- while loop == true do
+--   user = getCardInfo("user")
+--   value = getCardInfo("value")
+--   key = getCardInfo("key")
+--   term.clear()
+--   term.setCursorPos(1,1)
+--   print("Hello "..user)
+--   print("Your balance is: "..value.."$nad")
+--   print("Key: "..key)
+--   print("Select an input")
+--   print("[1] = Check Balance")
+--   print("[2] = Add Funds")
+--   print("[3] = Withdraw Funds")
+--   print("[4] = Eject card")
+--   local user_input = io.read()
+--   local func = f[user_input]
+--   if (func) then
+--     func()
+--   else
+--     print("Default case!")
+--   end
+-- end
+
+while true do
+  screen:clear()
+  centerText("Insert", 0, colors.white)
+  centerText("Card", 6, colors.white)
+  screen:output()
 end
-
-
