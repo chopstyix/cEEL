@@ -27,7 +27,7 @@ while true do
 	turtle.dropUp()
 	local player = drive.getDiskID()
 	addPlayer(player, input)
-	drive.setDiskLabel(input.."'s L'Otto Card - $0")
+	drive.setDiskLabel(input.."'s Card - 0$nad")
 	local filePath = fs.combine(drive.getMountPath(), "bal")
 	file = fs.open(filePath, "w")
 	file.write("0")
