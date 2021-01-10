@@ -261,7 +261,7 @@ function quit()
   local player = drive.getDiskID()
   local name, balance = getPlayerBalance(player)
   if balance ~= nil then
-    drive.setDiskLabel(name.."'s MogulCard - $"..tostring(balance))
+    drive.setDiskLabel(name.."'s Card - "..tostring(balance).."$nad")
   end
   turtle.suckDown()
   turtle.dropUp()

@@ -14,13 +14,6 @@ side = "drive_1"
 card_fileName = "disk/key"
 database_fileName ="card_database"
 
--- card_name = nil
--- drive = nil
--- card_id = nil
--- user = nil
--- value = nil
--- key = nil
-
 -- Overwrite variables if debugging
 if localdebug == 1 then
   card_name = "Bromanov_'s Card - 1000$nad" -- Debug
@@ -45,7 +38,6 @@ function centerText(text, y, color)
 	local tWidth = surface.getTextSize(text, font)
 	screen:drawText(text, font, math.floor((width - tWidth) / 2), y, color)
 end
-
 
 function findCharKeyIndex(charKey)
   local i = 0
@@ -85,13 +77,6 @@ function getCardInfo(x)
   end
 end
 
--- -- function createNewCard()
--- --   local file = fs.open(database_fileName,"w")
-
---   -- Check if user exists in database
---   -- If true exists, create new card and reassign disk ID
---   -- If false, create new card and add user to database and assign disk ID
-
 function makeKey()
   local key = 0
   local v = string.len(card_name)
@@ -115,7 +100,6 @@ function writeKey()
   file.close()
 end
 
--- Security Check
 function compareKey()
   expectedKey = makeKey()
   file = fs.open(card_fileName,"r")
@@ -170,7 +154,8 @@ local f =
   end -- Exit
 }
 
--- Run Loop Display
+
+-- Run Loop Display --
 setup()
 while true do
   screen:clear()
@@ -178,6 +163,32 @@ while true do
   centerText("Card", 6, colors.white)
   screen:output()
   sleep(5)
+  turtle.select(1)
+  local item = turtle.getItemDetail()
+  if item and item.name == "computercraft:disk_expanded" then
+    redstone.setOutput("top", false)
+    turtle.dropDown()
+    local player = drive.getDisk()
+    local name, balance = getPlayerBalance(player)
+    print("Verifying card...")
+    writeKey()
+    os.sleep(1)
+    -- Pass disk check
+    if compareKey() then
+      print("Success!")
+      os.sleep(1)
+    else
+      screen:clear()
+      centerText("INVALID", 0, colors.red)
+      centerText("CARD", 6, colors.red)
+      screen:output()
+      os.sleep(2)
+
+      print("Invalid card, nice try :)")
+      os.sleep(1)
+      return
+    end
+  end
 end
 
 while true do
@@ -200,20 +211,6 @@ card_id = disk.getID(side)
 user = getCardInfo("user")
 value = getCardInfo("value")
 key = getCardInfo("key")
-
-print("Verifying card...")
-writeKey()
-os.sleep(1)
-
--- Pass disk check
-if compareKey() then
-  print("Success!")
-  os.sleep(1)
-else
-  print("Invalid card, nice try :)")
-  os.sleep(1)
-  return
-end
 
 -- while loop == true do
 --   user = getCardInfo("user")
