@@ -120,7 +120,7 @@ end
 
 function setup()
 	buttons = {}
-	surface = dofile("surface")
+	surface = dofile("cashier/surface")
 	monitor = peripheral.find("monitor")
 	drive = peripheral.wrap("bottom")
 	monitor.setTextScale(0.5)
