@@ -1,4 +1,4 @@
-MAINFRAME_ID = 57
+MAINFRAME_ID = 49
 
 function addPlayer(player, name)
 	rednet.send(MAINFRAME_ID, {type="addPlayer", player=player, name=name}, "otto")

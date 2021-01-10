@@ -1,7 +1,7 @@
 local surface, monitor, width, height, screen, font, cardBg, cardBack, drive, buttons, deck, bigfont, lastBet, speaker, bouncingCards, logo
 
 MAX_BET = 128
-MAINFRAME_ID = 57
+MAINFRAME_ID = 49
 
 math.round = function(x) return x + 0.5 - (x + 0.5) % 1 end
 function shuffle(tbl)

@@ -1,6 +1,6 @@
 local monitor, drive, surface, screen, width, height, font, buttons
 
-MAINFRAME_ID = 57
+MAINFRAME_ID = 49
 PAYOUT_FEE = 5
 
 local currencyValues = {
@@ -263,7 +263,7 @@ while true do
 
 				name, balance = getPlayerBalance(player)
 				if balance ~= nil then
-					drive.setDiskLabel(name.."'s L'Otto Card - $"..tostring(balance))
+					drive.setDiskLabel(name.."'s Card - "..tostring(balance).."$nad")
 				end
 				turtle.suckDown()
 				turtle.drop()
