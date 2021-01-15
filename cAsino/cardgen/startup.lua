@@ -32,6 +32,6 @@ while true do
 	file = fs.open(filePath, "w")
 	file.write("0")
 	file.close()
-	turtle.suckUp()
-	turtle.drop()
+	sleep(2)
+	drive.eject()
 end
