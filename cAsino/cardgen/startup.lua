@@ -29,7 +29,7 @@ while true do
 	file = fs.open(filePath, "w")
 	file.write("0")
 	file.close()
-	drive.eject()
+	disk.eject("top")
 	sleep(5)
 	redstone.setOutput("front",false)
 end
