@@ -18,6 +18,7 @@ while true do
 	term.setCursorPos(1,2)
 	term.write("> ")
 	term.setTextColor(colors.white)
+	redstone.setOutput("front",true)
 	local input = read()
 	term.setTextColor(colors.yellow)
 	term.write("Generating card for "..input)
@@ -32,6 +33,7 @@ while true do
 	file = fs.open(filePath, "w")
 	file.write("0")
 	file.close()
-	sleep(2)
 	drive.eject()
+	sleep(5)
+	redstone.setOutput("front",false)
 end
