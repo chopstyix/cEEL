@@ -21,6 +21,7 @@ while true do
 	redstone.setOutput("front",true)
 	local input = read()
 	term.setTextColor(colors.yellow)
+	redstone.setOutput("front",false)
 	term.write("Generating card for "..input)
 	local player = drive.getDiskID()
 	addPlayer(player, input)
@@ -31,5 +32,4 @@ while true do
 	file.close()
 	disk.eject("top")
 	sleep(5)
-	redstone.setOutput("front",false)
 end
