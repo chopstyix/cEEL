@@ -22,10 +22,6 @@ while true do
 	local input = read()
 	term.setTextColor(colors.yellow)
 	term.write("Generating card for "..input)
-
-	-- turtle.turnLeft()
-	-- turtle.suck()
-	-- turtle.dropUp()
 	local player = drive.getDiskID()
 	addPlayer(player, input)
 	drive.setDiskLabel(input.."'s Card - 0$nad")
