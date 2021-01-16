@@ -264,7 +264,7 @@ function quit()
     drive.setDiskLabel(name.."'s Card - "..tostring(balance).."$nad")
   end
   turtle.suckDown()
-  turtle.dropUp()
+  turtle.drop()
   redstone.setOutput("top", false)
   os.sleep(0.1)
 	redstone.setOutput("top", true)
