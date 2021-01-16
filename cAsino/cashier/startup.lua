@@ -128,7 +128,7 @@ function setup()
 	width, height = term.getSize()
   	screen = surface.create(width, height)
 	font = surface.loadFont(surface.load("cEEL/cAsino/cashier/font"))
-	rednet.open("back")
+	rednet.open("right")
 	redstone.setOutput("top", true)
 end
 
