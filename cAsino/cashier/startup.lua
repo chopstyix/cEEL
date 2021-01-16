@@ -101,23 +101,23 @@ function countMoney()
 end
 
 function dropMoney(amount)
-	turtle.turnRight()
+	turtle.turnLeft()
 	turtle.select(1)
 	while amount > 0 do
 		turtle.suck()
 		local item = turtle.getItemDetail(1)
 		if item == nil then
-			turtle.turnLeft()
+			turtle.turnRight()
 			return nil
 		end
 		local amountDropping = math.min(item.count, amount)
-		turtle.turnLeft()
-		turtle.drop(amountDropping)
 		turtle.turnRight()
+		turtle.drop(amountDropping)
+		turtle.turnLeft()
 		amount = amount - amountDropping
 		turtle.drop()
 	end
-	turtle.turnLeft()
+	turtle.turnRight()
 end
 
 function setup()
