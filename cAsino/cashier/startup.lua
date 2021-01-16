@@ -4,7 +4,7 @@ MAINFRAME_ID = 49
 PAYOUT_FEE = 5
 
 local currencyValues = {
-	["minecraft:diamond"]=2
+	["minecraft:dirt"]=1
 }
 
 function waitForButtonPress()
@@ -128,7 +128,7 @@ function setup()
 	width, height = term.getSize()
   	screen = surface.create(width, height)
 	font = surface.loadFont(surface.load("cEEL/cAsino/cashier/font"))
-	rednet.open("right")
+	rednet.open("back")
 	redstone.setOutput("top", true)
 end
 
