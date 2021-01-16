@@ -85,8 +85,10 @@ function countMoney()
 				end
 			end
 			if isValid then
+				-- turtle turn left and deposit
 				turtle.drop()
 			elseif item then
+				-- turtle returns items to user
 				turtle.turnLeft()
 				turtle.drop()
 				turtle.turnRight()
