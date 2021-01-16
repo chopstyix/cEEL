@@ -71,7 +71,7 @@ function dropInventory()
 end
 
 function countMoney()
-	turtle.turnRight()
+	turtle.turnLeft()
 	local sum = 0
 	for i=1,2 do
 		for slot=1,16 do
@@ -86,17 +86,17 @@ function countMoney()
 			end
 			if isValid then
 				-- turtle turn left and deposit
-				turtle.turnLeft()
 				turtle.drop()
-				turtle.turnRight()
 			elseif item then
 				-- turtle returns items to user
+				turtle.turnRight()
 				turtle.drop()
+				turtle.turnLeft()
 			end
 		end
 	end
 	turtle.select(1)
-	turtle.turnLeft()
+	turtle.turnRight()
 	return sum
 end
 
