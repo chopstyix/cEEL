@@ -4,7 +4,7 @@ MAINFRAME_ID = 49
 PAYOUT_FEE = 5
 
 local currencyValues = {
-	["minecraft:dirt"]=1
+	["minecraft:diamond"]=2
 }
 
 function waitForButtonPress()

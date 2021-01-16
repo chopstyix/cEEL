@@ -13,7 +13,7 @@ function shuffle(tbl)
 end
 
 function setup()
-  surface = dofile("surface")
+  surface = dofile("cEEL/cAsino/blackjack/surface")
   monitor = peripheral.wrap("monitor_8")
 	drive = peripheral.wrap("bottom")
 	rednet.open("right")
