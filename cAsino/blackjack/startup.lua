@@ -27,10 +27,10 @@ function setup()
 	width, height = term.getSize()
   screen = surface.create(width, height)
   font = surface.loadFont(surface.load("cEEL/cAsino/blackjack/font"))
-  bigfont = surface.loadFont(surface.load("gothic"))
-  cardBg = surface.load("card.nfp")
-	cardBack = surface.load("cardback.nfp")
-	logo = surface.load("logo.nfp")
+  bigfont = surface.loadFont(surface.load("cEEL/cAsino/blackjack/gothic"))
+  cardBg = surface.load("cEEL/cAsino/blackjack/card.nfp")
+	cardBack = surface.load("cEEL/cAsino/blackjack/cardback.nfp")
+	logo = surface.load("cEEL/cAsino/blackjack/logo.nfp")
   buttons = {}
   deck = {}
   local i = 1
@@ -63,7 +63,7 @@ function drawCard(cardID)
 	end
 	local suit = cardID:sub(2, -1)
 	local card = surface.create(12, 15)
-  suit = surface.load(suit..".nfp")
+  suit = surface.load("cEEL/cAsino/blackjack/"..suit..".nfp")
   card:drawSurface(cardBg, 0, 0)
   card:drawSurface(suit, 5, 2)
   card:drawText(number, font, 2, 8, colors.black)
@@ -71,7 +71,7 @@ function drawCard(cardID)
 end
 
 function run()
-  local club = surface.load("club.nfp")
+  local club = surface.load("cEEL/cAsino/blackjack/club.nfp")
   screen:clear(colors.green)
   --screen:drawSurfaceSmall(club, 0, 0)
   screen:drawSurface(drawCard("K", "spade"), 3, 3)
