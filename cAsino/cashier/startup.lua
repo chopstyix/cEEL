@@ -71,7 +71,7 @@ function dropInventory()
 end
 
 function countMoney()
-	turtle.turnRight()
+	turtle.turnLeft()
 	local sum = 0
 	for i=1,2 do
 		for slot=1,16 do
@@ -85,37 +85,39 @@ function countMoney()
 				end
 			end
 			if isValid then
+				-- turtle turn left and deposit
 				turtle.drop()
 			elseif item then
-				turtle.turnLeft()
-				turtle.drop()
+				-- turtle returns items to user
 				turtle.turnRight()
+				turtle.drop()
+				turtle.turnLeft()
 			end
 		end
 	end
 	turtle.select(1)
-	turtle.turnLeft()
+	turtle.turnRight()
 	return sum
 end
 
 function dropMoney(amount)
-	turtle.turnRight()
+	turtle.turnLeft()
 	turtle.select(1)
 	while amount > 0 do
 		turtle.suck()
 		local item = turtle.getItemDetail(1)
 		if item == nil then
-			turtle.turnLeft()
+			turtle.turnRight()
 			return nil
 		end
 		local amountDropping = math.min(item.count, amount)
-		turtle.turnLeft()
-		turtle.drop(amountDropping)
 		turtle.turnRight()
+		turtle.drop(amountDropping)
+		turtle.turnLeft()
 		amount = amount - amountDropping
 		turtle.drop()
 	end
-	turtle.turnLeft()
+	turtle.turnRight()
 end
 
 function setup()
@@ -128,7 +130,7 @@ function setup()
 	width, height = term.getSize()
   	screen = surface.create(width, height)
 	font = surface.loadFont(surface.load("cEEL/cAsino/cashier/font"))
-	rednet.open("back")
+	rednet.open("right")
 	redstone.setOutput("top", true)
 end
 
