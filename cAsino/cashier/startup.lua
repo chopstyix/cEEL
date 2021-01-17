@@ -159,9 +159,10 @@ setup()
 while true do
 	screen:clear()
 	centerText("Insert", 0, colors.white)
-	centerText("Card", 6, colors.white)
-	centerText("Use Q", 12, colors.yellow)
-	centerText("Muscle", 18, colors.yellow)
+	centerText("$nad", 6, colors.white)
+	centerText("Card",12, colors.white)
+	centerText("Below",18, colors.white)
+
 	screen:output()
 	turtle.select(1)
 	local item = turtle.getItemDetail()
