@@ -250,8 +250,10 @@ while true do
 							elseif payoutAmount == "half" then
 								diamondsToDrop = balance / 2
 							end
-							setPlayerBalance(player, math.floor(balance - diamondsToDrop))
-							balance = math.floor(balance - diamondsToDrop)
+							currency,value  = currencyValues
+							setPlayerBalance(player, math.floor(balance - diamondsToDrop)) -- Update players balance to db
+							balance = math.floor(balance - diamondsToDrop) -- Updates balance to display on screen
+							diamondsToDrop = diamondsToDrop / value -- New Line
 							diamondsToDrop = math.floor(diamondsToDrop * (1 - PAYOUT_FEE / 100))
 							dropMoney(diamondsToDrop)
 						end
