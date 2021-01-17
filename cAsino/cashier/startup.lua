@@ -161,7 +161,7 @@ while true do
 	centerText("Insert", 0, colors.white)
 	centerText("$nad", 6, colors.white)
 	centerText("Card",12, colors.white)
-	centerText("Below",18, colors.white)
+	centerText("-",20, colors.white)
 
 	screen:output()
 	turtle.select(1)
