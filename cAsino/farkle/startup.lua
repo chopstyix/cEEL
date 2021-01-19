@@ -23,16 +23,31 @@ function setup()
 end
 
 function drawDice(value)
+    local value_buffer = value
     local dice = surface.create(13,9)
+    local number = surface.load("cEEL/cAsino/farkle/6.nfp")
     dice:drawSurface(diceBg, 0, 0)
+    dice:drawSurface(number, 0, 0)
+    return dice
 end
+-- function drawCard(cardID)
+-- 	local number = cardID:sub(1, 1)
+-- 	if number == "T" then
+-- 		number = "10"
+-- 	end
+-- 	local suit = cardID:sub(2, -1)
+-- 	local card = surface.create(12, 15)
+--   suit = surface.load("cEEL/cAsino/blackjack/"..suit..".nfp")
+--   card:drawSurface(cardBg, 0, 0)
+--   card:drawSurface(suit, 5, 2)
+--   card:drawText(number, font, 2, 8, colors.black)
+--   return card
 
 -- Main Line Code -- 
 -- Dice img dimensions are 13 x 9
 setup()
 screen:clear(colors.green)
-local dice = surface.create(13,9)
-dice:drawSurface(diceBg, 0, 0)
+screen:drawSurface(drawDice(1),0,0)
 screen:output()
 --term.redirect(oldTerm)
 --print("test1")
