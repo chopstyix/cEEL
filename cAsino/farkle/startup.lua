@@ -38,7 +38,7 @@ function drawDice(value)
     return dice
 end
 
-function drawButton(text,function)
+-- function drawButton(text,function)
 -- function drawCard(cardID)
 -- 	local number = cardID:sub(1, 1)
 -- 	if number == "T" then
