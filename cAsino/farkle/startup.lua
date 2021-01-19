@@ -7,7 +7,7 @@ SLOT_1 = {0,0}
 SLOT_2 = {20,0}
 SLOT_3 = {40,0}
 SLOT_4 = {0,20}
-SLOT_5 = {20 20}
+SLOT_5 = {20,20}
 SLOT_6 = {40,20}
 
 function setup()
