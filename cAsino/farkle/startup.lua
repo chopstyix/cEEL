@@ -3,6 +3,13 @@ local surface, diceMon, displayMon, width, height, screen, font, cardBg, cardBac
 MAX_BET = 128
 MAINFRAME_ID = 49
 
+SLOT_1 = 0,0
+SLOT_2 = 0,30
+SLOT_3 = 0,47
+SLOT_4 = 20,0
+SLOT_5 = 31,30
+SLOT_6 = 42,47
+
 function setup()
     surface = dofile("cEEL/cAsino/farkle/surface")
     diceMon = peripheral.wrap("monitor_14")
@@ -25,11 +32,13 @@ end
 function drawDice(value)
     local value_buffer = value
     local dice = surface.create(13,9)
-    local number = surface.load("cEEL/cAsino/farkle/6.nfp")
+    local number = surface.load("cEEL/cAsino/farkle/"..tonumber(value)..".nfp")
     dice:drawSurface(diceBg, 0, 0)
     dice:drawSurface(number, 0, 0)
     return dice
 end
+
+function drawButton(text,function)
 -- function drawCard(cardID)
 -- 	local number = cardID:sub(1, 1)
 -- 	if number == "T" then
@@ -47,7 +56,7 @@ end
 -- Dice img dimensions are 13 x 9
 setup()
 screen:clear(colors.green)
-screen:drawSurface(drawDice(1),0,0)
+screen:drawSurface(drawDice(1),SLOT_1)
 screen:output()
 --term.redirect(oldTerm)
 --print("test1")
