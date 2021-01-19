@@ -142,7 +142,7 @@ function Player:holdDice()
       elseif (self:checkState("hold")) then
         loop = false
         print("Score tallied, you end your turn")
-        self.queue_skip = true
+        self.flag_skip = true
       end
     elseif (type(input_1) == "number" and input_1 >= 1 and input_1 <=6) then
       if self.hand[input_1].lock == true then
@@ -198,4 +198,5 @@ repeat
     p1.flag_bust = true
   end
 until (p1.flag_skip == true or p1.flag_bust == true)
+-- Sanitize p1's table
 print("Opponents Turn")
