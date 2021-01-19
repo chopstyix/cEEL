@@ -30,9 +30,9 @@ function setup()
 end
 
 function drawDice(value)
-    local value_buffer = value
+    -- local value_buffer = value
     local dice = surface.create(13,9)
-    local number = surface.load("cEEL/cAsino/farkle/"..tostring(value)..".nfp")
+    local number = surface.load("cEEL/cAsino/farkle/"..value..".nfp")
     dice:drawSurface(diceBg, 0, 0)
     dice:drawSurface(number, 0, 0)
     return dice
@@ -56,7 +56,7 @@ end
 -- Dice img dimensions are 13 x 9
 setup()
 screen:clear(colors.green)
-screen:drawSurface(drawDice(1),SLOT_1[1],SLOT_1[2])
+screen:drawSurface(drawDice("1"),SLOT_1[1],SLOT_1[2])
 screen:output()
 --term.redirect(oldTerm)
 --print("test1")
