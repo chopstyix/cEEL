@@ -43,6 +43,7 @@ function Player:rollDice()
     count = 0
   end
   for k,v in ipairs(self.hand) do
+    math.randomseed(os.time())
     if self.hand[k].lock == false then -- If dice is not locked then roll a new value.
       self.hand[k].value = math.random(6)
     end
