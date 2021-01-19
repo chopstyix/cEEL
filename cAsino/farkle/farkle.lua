@@ -182,21 +182,21 @@ print("Initializing")
 p1 = Player
 p2 = Player
 
--- while (p1.flag_skip == false or p1.flag_bust == false) do
+while (p1.flag_skip == false or p1.flag_bust == false) do
   refresh()
   p1:rollDice()
   p1:printDice()
-  -- if p1:checkState("roll") then
-  --   p1:holdDice()
-  -- else
-  --   print("Bust!")
-  -- end
-  -- else
-  --   p1.turn_score = 0
-  --   p1.flag_bust = true
-  --   print("Bust!")
-  -- end
--- end
+  if p1:checkState("roll") then
+    p1:holdDice()
+  else
+    print("Bust!")
+  end
+  else
+    p1.turn_score = 0
+    p1.flag_bust = true
+    print("Bust!")
+  end
+end
 
 -- function printTable(player)
 --   local logtable
