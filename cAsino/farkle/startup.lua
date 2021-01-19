@@ -25,6 +25,7 @@ end
 function drawDice(value)
     local dice = surface.create(13,9)
     dice:drawSurface(diceBg, 0, 0)
+end
 
 -- Main Line Code -- 
 -- Dice img dimensions are 13 x 9
