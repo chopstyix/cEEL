@@ -32,7 +32,7 @@ end
 function drawDice(value)
     local value_buffer = value
     local dice = surface.create(13,9)
-    local number = surface.load("cEEL/cAsino/farkle/"..tonumber(value)..".nfp")
+    local number = surface.load("cEEL/cAsino/farkle/"..tostring(value)..".nfp")
     dice:drawSurface(diceBg, 0, 0)
     dice:drawSurface(number, 0, 0)
     return dice
