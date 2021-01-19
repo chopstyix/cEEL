@@ -4,7 +4,7 @@ MAX_BET = 128
 MAINFRAME_ID = 49
 
 function setup()
-    surface = dofile("cEEL/casino/farkle/surface")
+    surface = dofile("cEEL/cAsino/farkle/surface")
     diceMon = peripheral.wrap("monitor_14")
     displayMon = peripheral.wrap("monitor_13")
     drive = peripheral.wrap("bottom")
@@ -32,3 +32,4 @@ local dice = surface.create(13,9)
 dice:drawSurface(diceBg, 0, 0)
 term.redirect(oldTerm)
 print("test1")
+screen:output()
