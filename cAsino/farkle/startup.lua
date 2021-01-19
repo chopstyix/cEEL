@@ -56,7 +56,7 @@ end
 -- Dice img dimensions are 13 x 9
 setup()
 screen:clear(colors.green)
-screen:drawSurface(drawDice(1),SLOT_1)
+screen:drawSurface(drawDice(1),SLOT_1[1],SLOT_1[2])
 screen:output()
 --term.redirect(oldTerm)
 --print("test1")
