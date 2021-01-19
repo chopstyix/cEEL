@@ -191,11 +191,11 @@ while (p1.flag_skip == false or p1.flag_bust == false) do
   else
     print("Bust!")
   end
-  else
-    p1.turn_score = 0
-    p1.flag_bust = true
-    print("Bust!")
-  end
+  -- else
+  --   p1.turn_score = 0
+  --   p1.flag_bust = true
+  --   print("Bust!")
+  -- end
 end
 
 -- function printTable(player)
