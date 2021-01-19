@@ -1,5 +1,6 @@
 SCORE_TO_WIN = 4000
 MAX_BET = 128
+
 score = {
   single_one = 100,
   single_five = 50,
@@ -28,26 +29,21 @@ Player = {
   },
   hold = {},
 }
-
+-- TODO: Make the function check if all 6 dice has been locked.
 function Player:rollDice()
-  local count = 0
-  for i,v in ipairs(self.hand) do
-    if self.hand[i].lock == true then -- Print value of dice is not locked.
-      count = count + 1
-    end
-  end
-  if count == 6 then
-    for i,v in ipairs(self.hand) do
-      self.hand[i].lock = true
-    end
-    count = 0
-  end
+  -- local x = 1
+  local rolls = {math.random(6),math.random(6),math.random(6),math.random(6),math.random(6),math.random(6)}
+  -- print("Showing rolls")
+  -- print(rolls[1],rolls[2],rolls[3],rolls[4],rolls[5],rolls[6])
+  os.sleep(5)
   for k,v in ipairs(self.hand) do
-    math.randomseed(os.time()+k)
+    -- print(k,v)
     if self.hand[k].lock == false then -- If dice is not locked then roll a new value.
-      self.hand[k].value = math.random(6)
+      self.hand[k].value = rolls[k]
+      -- x = x + 1
     end
   end
+  -- x = 0
 end
 
 function Player:printDice()
@@ -56,6 +52,7 @@ function Player:printDice()
       print("Dice#"..i.." Value:"..self.hand[i].value.." Hold:"..tostring(self.hand[i].hold).." Lock:".. tostring(self.hand[i].lock))
     end
   end
+  print("")
   print("On Hold")
   for i,v in ipairs(self.hand) do
     if self.hand[i].lock == true then -- Print value of dice is not locked.
@@ -65,7 +62,7 @@ function Player:printDice()
 end
 
 function sleep()
-  os.sleep(2)
+  os.sleep(.5)
 end
 
 function Player:checkState(state)
@@ -73,17 +70,21 @@ function Player:checkState(state)
   local logtable = {}
   -- I don't understand how this works, but it count's the number of times each diceValue is repeated.
   if state == "hold" then
+    print("Checking holds")
+    sleep()
     for i,v in pairs(self.hand) do
       if self.hand[i].hold == true then
-        -- print(self.hand[i].value)
+        print(self.hand[i].value)
         local index = v.value
         logtable[index] = (logtable[index] or 0) + 1
       end
     end
   elseif state == "roll" then
+    print("Checking rolls")
+    sleep()
     for i,v in pairs(self.hand) do
       if self.hand[i].lock == false then
-        -- print(self.hand[i].value)
+        print(self.hand[i].value)
         local index = v.value
         logtable[index] = (logtable[index] or 0) + 1
       end
@@ -92,28 +93,29 @@ function Player:checkState(state)
 
   local count = countTable(logtable)
   if (count == 6) then
-    --print("Detected a 6 dice straight")
+    print("Detected a 6 dice straight")
     valid = true
   elseif (count == 5) then
     if (logtable[1] == 1) and (logtable[5] == 5) then
-      --print("Detected a 5 dice straight (1 to 5)")
+      print("Detected a 5 dice straight (1 to 5)")
       valid = true
     elseif (logtable[1] == 2) and (logtable[5] == 6) then
-      --print("Detected a 5 dice straight (2 to 6)")
+      print("Detected a 5 dice straight (2 to 6)")
       valid = true
     end
   else
     for diceValue,match in pairs(logtable) do -- Check for valid match, return a
-      --print("diceValue: "..diceValue.."  match: "..match)
+      print("diceValue: "..diceValue.."  match: "..match)
       if (match >= 3) then
-        --print("Detected a minimum of 3 of a kind")
+        print("Detected a minimum of 3 of a kind")
         valid = true
       elseif (diceValue == 1 or diceValue == 5) then
-        --print("Detected a 1 or a 5")
+        print("Detected a 1 or a 5")
         valid = true
       end
     end
   end
+  local key = os.pullEvent("key")
   return valid
 end
 
@@ -136,7 +138,7 @@ function Player:holdDice()
       end
     elseif input == "rollSkip" then
       if count == 0 then
-        print("unable to skip, please select a dice to hold")
+        print("Unable to skip, please select a dice to hold")
       elseif (self:checkState("hold")) then
         loop = false
         print("Score tallied, you end your turn")
@@ -182,19 +184,18 @@ end
 print("Initializing")
 p1 = Player
 p2 = Player
-
-while (p1.flag_skip == false or p1.flag_bust == false) do
+repeat
   refresh()
   p1:rollDice()
-  p1:printDice()
+  print("Done rolling")
+  sleep()
   if p1:checkState("roll") then
+    p1:printDice()
     p1:holdDice()
   else
+    p1:printDice()
     print("Bust!")
+    p1.flag_bust = true
   end
-  -- else
-  --   p1.turn_score = 0
-  --   p1.flag_bust = true
-  --   print("Bust!")
-  -- end
-end
+until (p1.flag_skip == true or p1.flag_bust == true)
+print("Opponents Turn")
