@@ -4,11 +4,11 @@ MAX_BET = 128
 MAINFRAME_ID = 49
 
 SLOT_1 = {0,0}
-SLOT_2 = {0,30}
-SLOT_3 = {0,47}
-SLOT_4 = {20,0}
-SLOT_5 = {31,30}
-SLOT_6 = {42,47}
+SLOT_2 = {20,0}
+SLOT_3 = {40,0}
+SLOT_4 = {0,20}
+SLOT_5 = {20 20}
+SLOT_6 = {40,20}
 
 function setup()
     surface = dofile("cEEL/cAsino/farkle/surface")
