@@ -69,8 +69,6 @@ function drawDice(value,selected)
     end
     return dice
 end
-
-function drawBust()
     
 function Player:rollDice()
     -- local x = 1
