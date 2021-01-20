@@ -107,7 +107,7 @@ p2 = Player -- Computer Opponent
 setup()
 
 screen:clear(colors.green)
-p1:drawPlayerHand(self.hand[1],self.hand[2],self.hand[3],self.hand[4],self.hand[5],self.hand[6])
+p1:drawPlayerHand(p1.hand[1],p1.hand[2],p1.hand[3],p1.hand[4],p1.hand[5],p1.hand[6])
 screen:output()
 --term.redirect(oldTerm)
 --print("test1")
