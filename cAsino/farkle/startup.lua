@@ -4,11 +4,11 @@ MAX_BET = 128
 MAINFRAME_ID = 49
 
 SLOT_1 = {0,0}
-SLOT_2 = {20,0}
-SLOT_3 = {40,0}
-SLOT_4 = {0,13}
-SLOT_5 = {20,13}
-SLOT_6 = {40,9}
+SLOT_2 = {17,0}
+SLOT_3 = {34,0}
+SLOT_4 = {0,9}
+SLOT_5 = {17,9}
+SLOT_6 = {34,9}
 
 function setup()
     surface = dofile("cEEL/cAsino/farkle/surface")
@@ -56,11 +56,11 @@ end
 -- Dice img dimensions are 13 x 9
 setup()
 screen:clear(colors.green)
--- screen:drawSurface(drawDice("1"),SLOT_1[1],SLOT_1[2])
--- screen:drawSurface(drawDice("2"),SLOT_2[1],SLOT_2[2])
--- screen:drawSurface(drawDice("3"),SLOT_3[1],SLOT_3[2])
--- screen:drawSurface(drawDice("4"),SLOT_4[1],SLOT_4[2])
--- screen:drawSurface(drawDice("5"),SLOT_5[1],SLOT_5[2])
+screen:drawSurface(drawDice("1"),SLOT_1[1],SLOT_1[2])
+screen:drawSurface(drawDice("2"),SLOT_2[1],SLOT_2[2])
+screen:drawSurface(drawDice("3"),SLOT_3[1],SLOT_3[2])
+screen:drawSurface(drawDice("4"),SLOT_4[1],SLOT_4[2])
+screen:drawSurface(drawDice("5"),SLOT_5[1],SLOT_5[2])
 screen:drawSurface(drawDice("6"),SLOT_6[1],SLOT_6[2])
 screen:output()
 --term.redirect(oldTerm)
