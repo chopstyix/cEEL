@@ -6,13 +6,13 @@ MAINFRAME_ID = 49
 SLOT_1 = {1,1}
 SLOT_2 = {18,1}
 SLOT_3 = {35,1}
-SLOT_4 = {52,1}
-SLOT_5 = {69,1}
-SLOT_6 = {86,1}
+SLOT_4 = {1,18}
+SLOT_5 = {18,18}
+SLOT_6 = {35,18}
 
 function setup()
     surface = dofile("cEEL/cAsino/farkle/surface")
-    diceMon = peripheral.wrap("monitor_15")
+    diceMon = peripheral.wrap("monitor_14")
     displayMon = peripheral.wrap("monitor_13")
     drive = peripheral.wrap("bottom")
     rednet.open("right")
@@ -49,10 +49,10 @@ function drawPlayerHand(dice1,dice2,dice3,dice4,dice5,dice6)
     screen:output()
 end
 
-function rollDiceButton(showRoll)
-    screen:clear(colors.green)
-    drawPlayerHand
-end
+-- function rollDiceButton(showRoll)
+--     screen:clear(colors.green)
+--     drawPlayerHand
+-- end
 -- function drawButton(text,function)
 -- function drawCard(cardID)
 -- 	local number = cardID:sub(1, 1)
