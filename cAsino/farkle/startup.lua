@@ -6,7 +6,7 @@ MAINFRAME_ID = 49
 SLOT_1 = {0,0}
 SLOT_2 = {17,0}
 SLOT_3 = {34,0}
-SLOT_4 = {0,117}
+SLOT_4 = {0,17}
 SLOT_5 = {17,17}
 SLOT_6 = {34,17}
 
@@ -31,7 +31,7 @@ end
 
 function drawDice(value)
     -- local value_buffer = value
-    local dice = surface.create(15,15)
+    local dice = surface.create(17,17)
     local number = surface.load("cEEL/cAsino/farkle/"..value..".nfp")
     dice:drawSurface(diceBg, 0, 0)
     dice:drawSurface(number, 0, 0)
