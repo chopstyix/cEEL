@@ -139,6 +139,14 @@ function Player:checkState(state)
 return valid
 end
 
+function countTable(table)
+    local count = 0
+    for i,v in pairs(table) do
+      count = count + 1
+    end
+    return count
+  end
+
 function Player:drawPlayerHand()
     screen:clear(colors.green)
     screen:drawSurface(drawDice(tostring(self.hand[1].value),self.hand[1].hold),SLOT_1[1],SLOT_1[2])
