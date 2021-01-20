@@ -137,12 +137,12 @@ end
 
 function Player:drawPlayerHand()
     screen:clear(colors.green)
-    screen:drawSurface(drawDice(tostring(self.hand[1].value)),SLOT_1[1],SLOT_1[2])
-    screen:drawSurface(drawDice(tostring(self.hand[2].value)),SLOT_2[1],SLOT_2[2])
-    screen:drawSurface(drawDice(tostring(self.hand[3].value)),SLOT_3[1],SLOT_3[2])
-    screen:drawSurface(drawDice(tostring(self.hand[4].value)),SLOT_4[1],SLOT_4[2])
-    screen:drawSurface(drawDice(tostring(self.hand[5].value)),SLOT_5[1],SLOT_5[2])
-    screen:drawSurface(drawDice(tostring(self.hand[6].value)),SLOT_6[1],SLOT_6[2])
+    screen:drawSurface(drawDice(tostring(self.hand[1].value),self.hand[1].hold),SLOT_1[1],SLOT_1[2])
+    screen:drawSurface(drawDice(tostring(self.hand[2].value),self.hand[2].hold),SLOT_2[1],SLOT_2[2])
+    screen:drawSurface(drawDice(tostring(self.hand[3].value),self.hand[3].hold),SLOT_3[1],SLOT_3[2])
+    screen:drawSurface(drawDice(tostring(self.hand[4].value),self.hand[4].hold),SLOT_4[1],SLOT_4[2])
+    screen:drawSurface(drawDice(tostring(self.hand[5].value),self.hand[5].hold),SLOT_5[1],SLOT_5[2])
+    screen:drawSurface(drawDice(tostring(self.hand[6].value),self.hand[6].hold),SLOT_6[1],SLOT_6[2])
     screen:output()
 end
 
@@ -283,10 +283,12 @@ function drawDice(selected)
     -- local value_buffer = value
     local dice = surface.create(17,17)
     local number = surface.load("cEEL/cAsino/farkle/"..value..".nfp")
+    local highlight = surface.load("cEEL/cAsino/farkle/highlight.nfp")
     dice:drawSurface(diceBg, 0, 0)
     dice:drawSurface(number, 0, 0)
     if selected then
-        dice:drawSurface()
+        dice:drawSurface(highlight, 0, 0)
+    end
     return dice
 end
 
@@ -304,7 +306,8 @@ if p1:checkState("roll") then
     p1:holdDice()
 else
     p1:drawPlayerHand()
-
+end
+p1:drawPlayerHand()
 screen:output()
 --term.redirect(oldTerm)
 --print("test1")
