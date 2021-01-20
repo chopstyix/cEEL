@@ -314,14 +314,14 @@ setup()
 
 screen:clear(colors.green)
 p1:rollDice()
-p1:drawPlayerHand()
-if p1:checkState("roll") then
+-- p1:drawPlayerHand()
+-- if p1:checkState("roll") then
     p1:drawPlayerHand()
     p1:holdDice_phase()
-else
-    p1:drawPlayerHand()
-end
-p1:drawPlayerHand()
+-- else
+--     p1:drawPlayerHand()
+-- end
+-- p1:drawPlayerHand()
 screen:output()
 --term.redirect(oldTerm)
 --print("test1")
