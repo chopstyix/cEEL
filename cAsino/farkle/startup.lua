@@ -6,9 +6,9 @@ MAINFRAME_ID = 49
 SLOT_1 = {0,0}
 SLOT_2 = {17,0}
 SLOT_3 = {34,0}
-SLOT_4 = {0,9}
-SLOT_5 = {17,9}
-SLOT_6 = {34,9}
+SLOT_4 = {0,117}
+SLOT_5 = {17,17}
+SLOT_6 = {34,17}
 
 function setup()
     surface = dofile("cEEL/cAsino/farkle/surface")
