@@ -230,12 +230,16 @@ local loop = true
     while loop do
         screen:clear(colors.green)
         self:drawPlayerHand()
-        event, side, xPos, yPos = os.pullEvent("monitor_touch")
+        local event, side, xPos, yPos = os.pullEvent("monitor_touch")
         for i,v in pairs(HITBOX) do
             local x1 = HITBOX[i][1]
             local y1 = HITBOX[i][2]
             local x2 = HITBOX[i][3]
             local y2 = HITBOX[i][4]
+            print("x1:"..x1)
+            print("y1:"..y1)
+            print("x2:"..x2)
+            print("y2:"..y2)
             if (xPos >= x1 and x <= x2) and (yPos >= y1 and yPos <= y2) then
                 if self.hand[i].hold == false then
                     self.hand[i].hold = true
