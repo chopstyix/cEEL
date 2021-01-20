@@ -3,12 +3,12 @@ local surface, diceMon, displayMon, width, height, screen, font, cardBg, cardBac
 MAX_BET = 128
 MAINFRAME_ID = 49
 
-SLOT_1 = {0,0}
-SLOT_2 = {17,0}
-SLOT_3 = {34,0}
-SLOT_4 = {51,0}
-SLOT_5 = {68,0}
-SLOT_6 = {85,0}
+SLOT_1 = {1,1}
+SLOT_2 = {18,1}
+SLOT_3 = {35,1}
+SLOT_4 = {52,1}
+SLOT_5 = {69,1}
+SLOT_6 = {86,1}
 
 function setup()
     surface = dofile("cEEL/cAsino/farkle/surface")
@@ -38,6 +38,21 @@ function drawDice(value)
     return dice
 end
 
+function drawPlayerHand(dice1,dice2,dice3,dice4,dice5,dice6)
+    screen:clear(colors.green)
+    screen:drawSurface(drawDice(dice1),SLOT_1[1],SLOT_1[2])
+    screen:drawSurface(drawDice(dice2),SLOT_2[1],SLOT_2[2])
+    screen:drawSurface(drawDice(dice3),SLOT_3[1],SLOT_3[2])
+    screen:drawSurface(drawDice(dice4),SLOT_4[1],SLOT_4[2])
+    screen:drawSurface(drawDice(dice5),SLOT_5[1],SLOT_5[2])
+    screen:drawSurface(drawDice(dice6),SLOT_6[1],SLOT_6[2])
+    screen:output()
+end
+
+function rollDiceButton(showRoll)
+    screen:clear(colors.green)
+    drawPlayerHand
+end
 -- function drawButton(text,function)
 -- function drawCard(cardID)
 -- 	local number = cardID:sub(1, 1)
@@ -56,12 +71,7 @@ end
 -- Dice img dimensions are 13 x 9
 setup()
 screen:clear(colors.green)
-screen:drawSurface(drawDice("1"),SLOT_1[1],SLOT_1[2])
-screen:drawSurface(drawDice("2"),SLOT_2[1],SLOT_2[2])
-screen:drawSurface(drawDice("3"),SLOT_3[1],SLOT_3[2])
-screen:drawSurface(drawDice("4"),SLOT_4[1],SLOT_4[2])
-screen:drawSurface(drawDice("5"),SLOT_5[1],SLOT_5[2])
-screen:drawSurface(drawDice("6"),SLOT_6[1],SLOT_6[2])
+drawPlayerHand("1","2","3","4","5","6")
 screen:output()
 --term.redirect(oldTerm)
 --print("test1")
