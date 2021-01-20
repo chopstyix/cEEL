@@ -158,53 +158,53 @@ function Player:drawPlayerHand()
     screen:output()
 end
 
-function Player:holdDice()
-    local loop = true
-    local count = 0
-    while loop do
-        -- refresh()
-        -- print("Select a dice to hold or use 'roll' or 'rollSkip'")
-        -- self:printDice()
-        -- local input = io.read()
-        local input_1 = tonumber(input)
-        if input == "roll" then
-        if count == 0 then
-            print("Unable to roll, please select dice to hold")
-        elseif (self:checkState("hold")) then
-            print("Score tallied, you can roll again")
-            local key = os.pullEvent("key")
-            loop = false
-        end
-        elseif input == "rollSkip" then
-        if count == 0 then
-            print("Unable to skip, please select a dice to hold")
-        elseif (self:checkState("hold")) then
-            loop = false
-            print("Score tallied, you end your turn")
-            self.flag_skip = true
-        end
-        elseif (type(input_1) == "number" and input_1 >= 1 and input_1 <=6) then
-        if self.hand[input_1].lock == true then
-            print("That dice is locked! Please try again.")
-        elseif (self.hand[input_1].hold == false) then
-            self.hand[input_1].hold = true
-            count = count + 1
-        elseif (self.hand[input_1].hold == true) then
-            self.hand[input_1].hold = false
-            count = count - 1
-        end
-        elseif input == nil then
-        print("Invalid input, please try again")
-        end
-    end
+-- function Player:holdDice()
+--     local loop = true
+--     local count = 0
+--     while loop do
+--         -- refresh()
+--         -- print("Select a dice to hold or use 'roll' or 'rollSkip'")
+--         -- self:printDice()
+--         -- local input = io.read()
+--         local input_1 = tonumber(input)
+--         if input == "roll" then
+--         if count == 0 then
+--             print("Unable to roll, please select dice to hold")
+--         elseif (self:checkState("hold")) then
+--             print("Score tallied, you can roll again")
+--             local key = os.pullEvent("key")
+--             loop = false
+--         end
+--         elseif input == "rollSkip" then
+--         if count == 0 then
+--             print("Unable to skip, please select a dice to hold")
+--         elseif (self:checkState("hold")) then
+--             loop = false
+--             print("Score tallied, you end your turn")
+--             self.flag_skip = true
+--         end
+--         elseif (type(input_1) == "number" and input_1 >= 1 and input_1 <=6) then
+--         if self.hand[input_1].lock == true then
+--             print("That dice is locked! Please try again.")
+--         elseif (self.hand[input_1].hold == false) then
+--             self.hand[input_1].hold = true
+--             count = count + 1
+--         elseif (self.hand[input_1].hold == true) then
+--             self.hand[input_1].hold = false
+--             count = count - 1
+--         end
+--         elseif input == nil then
+--         print("Invalid input, please try again")
+--         end
+--     end
 
-    for i,v in pairs(self.hand) do
-        if self.hand[i].hold == true then
-        self.hand[i].hold = false
-        self.hand[i].lock = true
-        end
-    end
-end
+--     for i,v in pairs(self.hand) do
+--         if self.hand[i].hold == true then
+--         self.hand[i].hold = false
+--         self.hand[i].lock = true
+--         end
+--     end
+-- end
 
 function setup()
     surface = dofile("cEEL/cAsino/farkle/surface")
@@ -317,7 +317,7 @@ p1:rollDice()
 p1:drawPlayerHand()
 if p1:checkState("roll") then
     p1:drawPlayerHand()
-    p1:holdDice()
+    p1:holdDice_phase()
 else
     p1:drawPlayerHand()
 end
