@@ -8,7 +8,7 @@ SLOT_2 = {20,0}
 SLOT_3 = {40,0}
 SLOT_4 = {0,13}
 SLOT_5 = {20,13}
-SLOT_6 = {40,10}
+SLOT_6 = {40,9}
 
 function setup()
     surface = dofile("cEEL/cAsino/farkle/surface")
