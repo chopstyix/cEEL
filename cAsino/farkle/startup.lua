@@ -216,6 +216,8 @@ end
 function Player:holdDice_phase()
 local loop = true
     while loop do
+        screen:clear(colors.green)
+        self.drawPlayerHand()
         event, side, xPos, yPos = os.pullEvent("monitor_touch")
         for i,v in pairs(HITBOX) do
             local x1 = HITBOX[i][1]
@@ -230,8 +232,7 @@ local loop = true
                 end
             end
         end
-        for i,v in pairs(self.hand) do
-            if
+        screen:output()
     return xPos, yPos
 end
 
