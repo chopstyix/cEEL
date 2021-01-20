@@ -62,7 +62,7 @@ function Player:rollDice()
     end
     -- x = 0
 end
-function Player:drawDice(value)
+function drawDice(value)
     -- local value_buffer = value
     local dice = surface.create(17,17)
     local number = surface.load("cEEL/cAsino/farkle/"..value..".nfp")
