@@ -293,7 +293,8 @@ p1 = Player -- User
 p2 = Player -- Computer Opponent
 setup()
 screen:clear(colors.green)
-centerText("bust",2,colors.black)
+screen:drawText("bust",font,0,0,colors.black)
+-- centerText("bust",2,colors.black)
 --p1:rollDice()
 -- p1:drawPlayerHand()
 -- if p1:checkState("roll") then
