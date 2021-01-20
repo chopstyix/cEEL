@@ -53,7 +53,7 @@ function setup()
     term.setPaletteColor(colors.green, 0x044906)
     width, height = term.getSize()
     screen = surface.create(width, height)
-    font = surface.loadFont(surface.load("cEEL/cAsino/blackjack/font"))
+    font = surface.loadFont(surface.load("cEEL/cAsino/farkle/font"))
     diceBg = surface.load("cEEL/cAsino/farkle/diceBg.nfp")
 end
 
