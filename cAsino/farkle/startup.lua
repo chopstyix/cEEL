@@ -53,6 +53,7 @@ function setup()
     term.setPaletteColor(colors.green, 0x044906)
     width, height = term.getSize()
     screen = surface.create(width, height)
+    font = surface.loadFont(surface.load("cEEL/cAsino/blackjack/font"))
     diceBg = surface.load("cEEL/cAsino/farkle/diceBg.nfp")
 end
 
@@ -69,6 +70,8 @@ function drawDice(value,selected)
     return dice
 end
 
+function drawBust()
+    
 function Player:rollDice()
     -- local x = 1
     local rolls = {math.random(6),math.random(6),math.random(6),math.random(6),math.random(6),math.random(6)}
@@ -146,6 +149,7 @@ function countTable(table)
     end
     return count
 end
+
 
 function Player:drawPlayerHand()
     screen:clear(colors.green)
@@ -257,40 +261,6 @@ local loop = true
     return xPos, yPos
 end
 
--- function getButtonSurface(text, bg)
---     local textSize = surface.getTextSize(text, font)
---     local button = surface.create(textSize + 2, 7)
---     button:fillRect(0,0,textSize+2, 7, bg)
---     button:drawText(text, font, 1, 1, colors.black)
---     return button
--- end
-
--- function button(surface, text, bg, x, y, func, center)
---     local button = getButtonSurface(text, bg)
---     if center then
---         x = math.floor(x - button.width / 2)
---     end
---     surface:drawSurface(button, x, y)
---     buttons[text] = {x=x, y=y, width=button.width, height=button.height, cb=func}
---     return button
--- end
-  
--- function waitForButtonPress(ox, oy)
---     local pressed = false
---     while not pressed do
---           local event, button, px, py = os.pullEvent("monitor_touch")
---       px = px - ox
---           py = py - oy
---       for text,button in pairs(buttons) do
---         if px >= button.x and px <= button.x + button.width and py >= button.y and py <= button.y + button.height then
---           button.cb()
---           buttons = {}
---           pressed = true
---         end
---       end
---     end
---   end
-
 -- function button(surface, text, bg, x, y, func, center)
 -- local button = getButtonSurface(text, bg)
 -- if center then
@@ -323,12 +293,13 @@ setup()
 screen:clear(colors.green)
 p1:rollDice()
 -- p1:drawPlayerHand()
--- if p1:checkState("roll") then
+if p1:checkState("roll") then
     p1:drawPlayerHand()
     p1:holdDice_phase()
--- else
---     p1:drawPlayerHand()
--- end
+else
+    p1:drawPlayerHand()
+    screen:drawText("BUST", font, 2, 8, colors.black)
+end
 -- p1:drawPlayerHand()
 screen:output()
 --term.redirect(oldTerm)
