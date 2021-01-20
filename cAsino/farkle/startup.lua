@@ -293,7 +293,7 @@ p1 = Player -- User
 p2 = Player -- Computer Opponent
 setup()
 screen:clear(colors.green)
-screen:drawText("bust",font,0,0,colors.black)
+screen:drawString("bust",0,0,colors.white)
 -- centerText("bust",2,colors.black)
 --p1:rollDice()
 -- p1:drawPlayerHand()
