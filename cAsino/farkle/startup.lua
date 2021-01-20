@@ -56,12 +56,16 @@ function setup()
     diceBg = surface.load("cEEL/cAsino/farkle/diceBg.nfp")
 end
 
-function drawDice(value)
+function drawDice(selected)
     -- local value_buffer = value
     local dice = surface.create(16,14)
     local number = surface.load("cEEL/cAsino/farkle/"..value..".nfp")
+    local highlight = surface.load("cEEL/cAsino/farkle/highlight.nfp")
     dice:drawSurface(diceBg, 0, 0)
     dice:drawSurface(number, 0, 0)
+    if selected then
+        dice:drawSurface(highlight, 0, 0)
+    end
     return dice
 end
 
@@ -281,18 +285,18 @@ end
 -- return button
 -- end
 -- Surface Stuff
-function drawDice(selected)
-    -- local value_buffer = value
-    local dice = surface.create(17,17)
-    local number = surface.load("cEEL/cAsino/farkle/"..value..".nfp")
-    local highlight = surface.load("cEEL/cAsino/farkle/highlight.nfp")
-    dice:drawSurface(diceBg, 0, 0)
-    dice:drawSurface(number, 0, 0)
-    if selected then
-        dice:drawSurface(highlight, 0, 0)
-    end
-    return dice
-end
+-- function drawDice(selected)
+--     -- local value_buffer = value
+--     local dice = surface.create(17,17)
+--     local number = surface.load("cEEL/cAsino/farkle/"..value..".nfp")
+--     local highlight = surface.load("cEEL/cAsino/farkle/highlight.nfp")
+--     dice:drawSurface(diceBg, 0, 0)
+--     dice:drawSurface(number, 0, 0)
+--     if selected then
+--         dice:drawSurface(highlight, 0, 0)
+--     end
+--     return dice
+-- end
 
   -- Main Line Code -- 
 -- Dice img dimensions are 13 x 9
