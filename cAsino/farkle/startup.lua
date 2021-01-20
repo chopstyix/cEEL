@@ -236,6 +236,8 @@ local loop = true
             local y1 = HITBOX[i][2]
             local x2 = HITBOX[i][3]
             local y2 = HITBOX[i][4]
+            print("xPos:"..xPos)
+            print("yPos:"..yPos)
             print("x1:"..x1)
             print("y1:"..y1)
             print("x2:"..x2)
