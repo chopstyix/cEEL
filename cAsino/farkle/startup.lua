@@ -145,7 +145,7 @@ function countTable(table)
       count = count + 1
     end
     return count
-  end
+end
 
 function Player:drawPlayerHand()
     screen:clear(colors.green)
