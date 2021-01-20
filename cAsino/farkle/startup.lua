@@ -232,7 +232,7 @@ local loop = true
         self:drawPlayerHand()
         local event, side, xPos, yPos = os.pullEvent("monitor_touch")
         xPos = xPos / 2
-        yPos = yPos /
+        yPos = yPos / 2
         for i,v in pairs(HITBOX) do
             local x1 = HITBOX[i][1]
             local y1 = HITBOX[i][2]
