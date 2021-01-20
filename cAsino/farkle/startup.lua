@@ -6,13 +6,13 @@ MAINFRAME_ID = 49
 SLOT_1 = {0,0}
 SLOT_2 = {17,0}
 SLOT_3 = {34,0}
-SLOT_4 = {0,17}
-SLOT_5 = {17,17}
-SLOT_6 = {34,17}
+SLOT_4 = {51,0}
+SLOT_5 = {68,0}
+SLOT_6 = {85,0}
 
 function setup()
     surface = dofile("cEEL/cAsino/farkle/surface")
-    diceMon = peripheral.wrap("monitor_14")
+    diceMon = peripheral.wrap("monitor_15")
     displayMon = peripheral.wrap("monitor_13")
     drive = peripheral.wrap("bottom")
     rednet.open("right")
