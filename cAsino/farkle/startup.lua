@@ -28,21 +28,6 @@ Player = {
     hold = {},
   }
 
-function Player:rollDice()
--- local x = 1
-local rolls = {math.random(6),math.random(6),math.random(6),math.random(6),math.random(6),math.random(6)}
--- print("Showing rolls")
--- print(rolls[1],rolls[2],rolls[3],rolls[4],rolls[5],rolls[6])
--- os.sleep(2)
-for k,v in ipairs(self.hand) do
-    -- print(k,v)
-    if self.hand[k].lock == false then -- If dice is not locked then roll a new value.
-    self.hand[k].value = rolls[k]
-    -- x = x + 1
-    end
-end
--- x = 0
-end
 function setup()
     surface = dofile("cEEL/cAsino/farkle/surface")
     diceMon = peripheral.wrap("monitor_14")
@@ -62,6 +47,22 @@ function setup()
     diceBg = surface.load("cEEL/cAsino/farkle/diceBg.nfp")
 end
 
+function Player:rollDice()
+    -- local x = 1
+    local rolls = {math.random(6),math.random(6),math.random(6),math.random(6),math.random(6),math.random(6)}
+    -- print("Showing rolls")
+    -- print(rolls[1],rolls[2],rolls[3],rolls[4],rolls[5],rolls[6])
+    -- os.sleep(2)
+    for k,v in ipairs(self.hand) do
+        -- print(k,v)
+        if self.hand[k].lock == false then -- If dice is not locked then roll a new value.
+        self.hand[k].value = rolls[k]
+        -- x = x + 1
+        end
+    end
+    -- x = 0
+end
+
 function Player:drawDice(value)
     -- local value_buffer = value
     local dice = surface.create(17,17)
@@ -71,14 +72,14 @@ function Player:drawDice(value)
     return dice
 end
 
-function drawPlayerHand(dice1,dice2,dice3,dice4,dice5,dice6)
+function Player:drawPlayerHand()
     screen:clear(colors.green)
-    screen:drawSurface(drawDice(dice1),SLOT_1[1],SLOT_1[2])
-    screen:drawSurface(drawDice(dice2),SLOT_2[1],SLOT_2[2])
-    screen:drawSurface(drawDice(dice3),SLOT_3[1],SLOT_3[2])
-    screen:drawSurface(drawDice(dice4),SLOT_4[1],SLOT_4[2])
-    screen:drawSurface(drawDice(dice5),SLOT_5[1],SLOT_5[2])
-    screen:drawSurface(drawDice(dice6),SLOT_6[1],SLOT_6[2])
+    screen:drawSurface(drawDice(self.hand[1]),SLOT_1[1],SLOT_1[2])
+    screen:drawSurface(drawDice(self.hand[2]),SLOT_2[1],SLOT_2[2])
+    screen:drawSurface(drawDice(self.hand[3]),SLOT_3[1],SLOT_3[2])
+    screen:drawSurface(drawDice(self.hand[4]),SLOT_4[1],SLOT_4[2])
+    screen:drawSurface(drawDice(self.hand[5]),SLOT_5[1],SLOT_5[2])
+    screen:drawSurface(drawDice(self.hand[6]),SLOT_6[1],SLOT_6[2])
     screen:output()
 end
 
@@ -107,7 +108,8 @@ p2 = Player -- Computer Opponent
 setup()
 
 screen:clear(colors.green)
-p1:drawPlayerHand(p1.hand[1],p1.hand[2],p1.hand[3],p1.hand[4],p1.hand[5],p1.hand[6])
+p1:rollDice()
+p1:drawPlayerHand()
 screen:output()
 --term.redirect(oldTerm)
 --print("test1")
