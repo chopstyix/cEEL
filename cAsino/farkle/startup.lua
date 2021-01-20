@@ -73,12 +73,12 @@ end
 
 function Player:drawPlayerHand()
     screen:clear(colors.green)
-    screen:drawSurface(drawDice(tostring(self.hand[1])),SLOT_1[1],SLOT_1[2])
-    screen:drawSurface(drawDice(tostring(self.hand[2])),SLOT_2[1],SLOT_2[2])
-    screen:drawSurface(drawDice(tostring(self.hand[3])),SLOT_3[1],SLOT_3[2])
-    screen:drawSurface(drawDice(tostring(self.hand[4])),SLOT_4[1],SLOT_4[2])
-    screen:drawSurface(drawDice(tostring(self.hand[5])),SLOT_5[1],SLOT_5[2])
-    screen:drawSurface(drawDice(tostring(self.hand[6])),SLOT_6[1],SLOT_6[2])
+    screen:drawSurface(drawDice(tostring(self.hand[1].value)),SLOT_1[1],SLOT_1[2])
+    screen:drawSurface(drawDice(tostring(self.hand[2].value)),SLOT_2[1],SLOT_2[2])
+    screen:drawSurface(drawDice(tostring(self.hand[3].value)),SLOT_3[1],SLOT_3[2])
+    screen:drawSurface(drawDice(tostring(self.hand[4].value)),SLOT_4[1],SLOT_4[2])
+    screen:drawSurface(drawDice(tostring(self.hand[5].value)),SLOT_5[1],SLOT_5[2])
+    screen:drawSurface(drawDice(tostring(self.hand[6].value)),SLOT_6[1],SLOT_6[2])
     screen:output()
 end
 
