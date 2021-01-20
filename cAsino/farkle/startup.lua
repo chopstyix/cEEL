@@ -8,7 +8,7 @@ SLOT_2 = {20,0}
 SLOT_3 = {40,0}
 SLOT_4 = {0,13}
 SLOT_5 = {20,13}
-SLOT_6 = {40,13}
+SLOT_6 = {40,10}
 
 function setup()
     surface = dofile("cEEL/cAsino/farkle/surface")
@@ -31,7 +31,7 @@ end
 
 function drawDice(value)
     -- local value_buffer = value
-    local dice = surface.create(15,13)
+    local dice = surface.create(15,15)
     local number = surface.load("cEEL/cAsino/farkle/"..value..".nfp")
     dice:drawSurface(diceBg, 0, 0)
     dice:drawSurface(number, 0, 0)
