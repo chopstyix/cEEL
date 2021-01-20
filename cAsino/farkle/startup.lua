@@ -291,13 +291,13 @@ setup()
 screen:clear(colors.green)
 p1:rollDice()
 -- p1:drawPlayerHand()
-if p1:checkState("roll") then
+-- if p1:checkState("roll") then
+--     p1:drawPlayerHand()
+--     p1:holdDice_phase()
+--else
     p1:drawPlayerHand()
-    p1:holdDice_phase()
-else
-    p1:drawPlayerHand()
-    screen:drawText("BUST", font, 2, 8, colors.black)
-end
+    screen:drawText("BUST",font, 2, 8, colors.black)
+--end
 -- p1:drawPlayerHand()
 screen:output()
 --term.redirect(oldTerm)
