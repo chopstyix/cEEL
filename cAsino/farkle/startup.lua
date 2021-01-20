@@ -5,10 +5,10 @@ MAINFRAME_ID = 49
 
 SLOT_1 = {1,1}
 SLOT_2 = {19,1}
-SLOT_3 = {36,1}
+SLOT_3 = {37,1}
 SLOT_4 = {1,18}
 SLOT_5 = {19,18}
-SLOT_6 = {36,18}
+SLOT_6 = {37,18}
 
 HITBOX = {
     [1] = {SLOT_1[1],SLOT_1[2],SLOT_1[1]+14,SLOT_1[2]+17},
@@ -233,6 +233,7 @@ local loop = true
             end
         end
         screen:output()
+    end
     return xPos, yPos
 end
 
