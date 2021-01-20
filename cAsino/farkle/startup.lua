@@ -296,7 +296,7 @@ p1:rollDice()
 --     p1:holdDice_phase()
 --else
     p1:drawPlayerHand()
-    screen:drawText("BUST",font, 2, 8, colors.black)
+    screen:drawText("BUST",font, 0, 0, colors.black)
 --end
 -- p1:drawPlayerHand()
 screen:output()
