@@ -213,10 +213,26 @@ function setup()
     diceBg = surface.load("cEEL/cAsino/farkle/diceBg.nfp")
 end
 
-function getButtonPress()
-    event, side, xPos, yPos = os.pullEvent("monitor_touch")
+function Player:holdDice_phase()
+local loop = true
+    while loop do
+        event, side, xPos, yPos = os.pullEvent("monitor_touch")
+        for i,v in pairs(HITBOX) do
+            local x1 = HITBOX[i][1]
+            local y1 = HITBOX[i][2]
+            local x2 = HITBOX[i][3]
+            local y2 = HITBOX[i][4]
+            if (xPos >= x1 and x <= x2) and (yPos >= y1 and yPos <= y2) then
+                if self.hand[i].hold == false then
+                    self.hand[i].hold = true
+                elseif self.hand[i].hold == true then
+                    self.hand[i].hold = false
+                end
+            end
+        end
+        for i,v in pairs(self.hand) do
+            if
     return xPos, yPos
-    end
 end
 
 -- function getButtonSurface(text, bg)
@@ -263,14 +279,17 @@ end
 -- return button
 -- end
 -- Surface Stuff
-function drawDice(value)
+function drawDice(selected)
     -- local value_buffer = value
     local dice = surface.create(17,17)
     local number = surface.load("cEEL/cAsino/farkle/"..value..".nfp")
     dice:drawSurface(diceBg, 0, 0)
     dice:drawSurface(number, 0, 0)
+    if selected then
+        dice:drawSurface()
     return dice
 end
+
   -- Main Line Code -- 
 -- Dice img dimensions are 13 x 9
 p1 = Player -- User
@@ -280,11 +299,11 @@ setup()
 screen:clear(colors.green)
 p1:rollDice()
 p1:drawPlayerHand()
--- if p1:checkState("roll") then
---     p1:drawPlayerHand()
---     p1:holdDice()
--- else
---     p1:drawPlayerHand()
+if p1:checkState("roll") then
+    p1:drawPlayerHand()
+    p1:holdDice()
+else
+    p1:drawPlayerHand()
 
 screen:output()
 --term.redirect(oldTerm)
