@@ -287,16 +287,16 @@ end
 p1 = Player -- User
 p2 = Player -- Computer Opponent
 setup()
-
 screen:clear(colors.green)
-p1:rollDice()
+screen:drawText("BUST",font, 1, 1, colors.black)
+--p1:rollDice()
 -- p1:drawPlayerHand()
 -- if p1:checkState("roll") then
 --     p1:drawPlayerHand()
 --     p1:holdDice_phase()
 --else
-    p1:drawPlayerHand()
-    screen:drawText("BUST",font, 1, 1, colors.white)
+    --p1:drawPlayerHand()
+
 --end
 -- p1:drawPlayerHand()
 screen:output()
