@@ -56,7 +56,7 @@ function setup()
     diceBg = surface.load("cEEL/cAsino/farkle/diceBg.nfp")
 end
 
-function drawDice(selected)
+function drawDice(value,selected)
     -- local value_buffer = value
     local dice = surface.create(16,14)
     local number = surface.load("cEEL/cAsino/farkle/"..value..".nfp")
