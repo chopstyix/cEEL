@@ -235,12 +235,12 @@ p2 = Player -- Computer Opponent
 setup()
 
 while p1.flag_bust == false and p1.flag_skip == false and p1.flag_quit == false do
-screen:clear(colors.green)
-p1:rollDice()
+    screen:clear(colors.green)
+    p1:rollDice()
     if p1:checkState("roll") then
         p1:holdDice_phase()
     else
-        self.flag_bust = true
+        p1.flag_bust = true
         p1:drawScreen()
         os.sleep(5)
     end
