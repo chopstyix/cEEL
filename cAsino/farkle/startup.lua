@@ -258,15 +258,13 @@ function Player:checkState(state)
                     end
                 end
             end
-            for i2,v2 in ipairs(self.hand) do
-                debug(i2)
-                debug(v2)
-                if (v == 1) and self.hand[i].flag_count == false then
+            for i,v in ipairs(self.hand) do
+                if (v.value == 1) and self.hand[i].flag_count == false then
                         self.hand[i].flag_count = true
                         score = score + 100
                         debug("Detected a 1")
                         valid = true
-                elseif (v == 5) and self.hand[i].flag_count == false then
+                elseif (v.value == 5) and self.hand[i].flag_count == false then
                         self.hand[i].flag_count = true
                         score = score + 50
                         debug("Detected a 5")
