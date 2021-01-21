@@ -230,11 +230,7 @@ setup()
 while p1.flag_bust == false and p1.flag_skip == false and p1.flag_quit == false do
 screen:clear(colors.green)
 p1:rollDice()
-p1:drawScreen()
     if p1:checkState("roll") then
-        p1:drawScreen()
-        screen:output()
-        -- os.sleep(1)
         p1:holdDice_phase()
     else
         p1:drawScreen()
