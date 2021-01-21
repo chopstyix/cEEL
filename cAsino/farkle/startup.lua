@@ -246,7 +246,7 @@ end
   -- Main Line Code -- 
 p1 = Player -- User
 p2 = Player -- Computer Opponent
--- setup()
+setup()
 screen:clear(colors.green)
 screen:drawText("test",debugFont,0,0,colors.white)
 sleep()
