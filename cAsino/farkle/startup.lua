@@ -231,6 +231,7 @@ while p1.flag_bust == false do
     else
         p1:drawScreen()
         os.sleep(3)
+        flag_bust = true
     end
 end
 -- p1:drawScreen()
