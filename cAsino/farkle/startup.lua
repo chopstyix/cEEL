@@ -153,7 +153,7 @@ function countTable(table)
     return count
 end
 
-function Player:drawPlayerHand()
+function Player:drawScreen()
     screen:clear(colors.green)
     screen:drawSurface(drawDice(tostring(self.hand[1].value),self.hand[1].hold),SLOT_1[1],SLOT_1[2])
     screen:drawSurface(drawDice(tostring(self.hand[2].value),self.hand[2].hold),SLOT_2[1],SLOT_2[2])
@@ -161,6 +161,7 @@ function Player:drawPlayerHand()
     screen:drawSurface(drawDice(tostring(self.hand[4].value),self.hand[4].hold),SLOT_4[1],SLOT_4[2])
     screen:drawSurface(drawDice(tostring(self.hand[5].value),self.hand[5].hold),SLOT_5[1],SLOT_5[2])
     screen:drawSurface(drawDice(tostring(self.hand[6].value),self.hand[6].hold),SLOT_6[1],SLOT_6[2])
+    screen:drawSurface(drawButton("Roll",colors.white),10,0)
     screen:output()
 end
 
@@ -168,7 +169,7 @@ function Player:holdDice_phase()
     local loop = true
         while loop do
             screen:clear(colors.green)
-            self:drawPlayerHand()
+            self:drawScreen()
             -- drawBottomButtons(buttons)
             local event, side, xPos, yPos = os.pullEvent("monitor_touch")
             -- xPos = xPos / 2
@@ -212,18 +213,17 @@ setup()
 
 screen:clear(colors.green)
 p1:rollDice()
-p1:drawPlayerHand()
+p1:drawScreen()
 if p1:checkState("roll") then
-    p1:drawPlayerHand()
-    screen:drawSurface(drawButton("Roll",colors.white),0,0)
+    p1:drawScreen()
     screen:output()
     os.sleep(5)
     p1:holdDice_phase()
 else
-    p1:drawPlayerHand()
+    p1:drawScreen()
 
 end
--- p1:drawPlayerHand()
+-- p1:drawScreen()
 screen:output()
 --term.redirect(oldTerm)
 --print("test1")
