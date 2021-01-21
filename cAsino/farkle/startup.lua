@@ -215,9 +215,9 @@ p1:rollDice()
 p1:drawPlayerHand()
 if p1:checkState("roll") then
     p1:drawPlayerHand()
-    screen:drawSurface(drawButton("Roll",colors.white),20,0)
+    screen:drawSurface(drawButton("Roll",colors.white),0,0)
     screen:output()
-    -- os.sleep(5)
+    os.sleep(5)
     p1:holdDice_phase()
 else
     p1:drawPlayerHand()
