@@ -20,9 +20,9 @@ DICE_HITBOX = {
 }
 
 ACTION_HITBOX = {
-    ["Roll"] = {x1,y1,x2,y2, enabled = true},
-    ["Skip and Roll"] = {x1, y1,x2, y2, enabled = true},
-    ["Skip and End Turn"] = {x1, y1, x2, y2, enabled = true},
+    ["Roll"] = {57,2,20,2+7, enabled = true},
+    ["Skip and Roll"] = {57,12,x2,12+7, enabled = true},
+    ["Skip and End Turn"] = {57,30, x2,12+7, enabled = true},
 }
 
 Player = {
@@ -51,6 +51,7 @@ function setup()
     rednet.open("right")
     speaker = peripheral.find("speaker")
     diceMon.setTextScale(0.5)
+    oldTerm = term.current()
     term.redirect(diceMon)
     term.setPaletteColor(colors.lightGray, 0xc5c5c5)
     term.setPaletteColor(colors.orange, 0xf15c5c)
@@ -164,6 +165,9 @@ function Player:drawScreen()
     screen:drawSurface(drawButton("ROLL",colors.white),58,2)
     screen:drawSurface(drawButton("SKIP",colors.white),58,12)
     screen:drawSurface(drawButton("QUIT",colors.red),58,30)
+    if self.flag_bust then
+        screen:drawSurface(drawButton("BUST",colors.red),25,15)
+    end
     screen:output()
 end
 
@@ -181,12 +185,14 @@ function Player:holdDice_phase()
                 local y1 = DICE_HITBOX[i][2]
                 local x2 = DICE_HITBOX[i][3]
                 local y2 = DICE_HITBOX[i][4]
+                term.redirect(oldTerm)
                 print("xPos:"..xPos)
                 print("yPos:"..yPos)
                 print("x1:"..x1)
                 print("y1:"..y1)
                 print("x2:"..x2)
                 print("y2:"..y2)
+                term.redirect(diceMon)
                 if (xPos >= x1 and xPos <= x2) and (yPos >= y1 and yPos <= y2) then
                     if self.hand[i].hold == false then
                         self.hand[i].hold = true
@@ -216,16 +222,17 @@ setup()
 screen:clear(colors.green)
 p1:rollDice()
 p1:drawScreen()
-if p1:checkState("roll") then
-    p1:drawScreen()
-    screen:output()
-    os.sleep(5)
-    p1:holdDice_phase()
-else
-    p1:drawScreen()
-
+while p1.flag_bust do
+    if p1:checkState("roll") then
+        p1:drawScreen()
+        screen:output()
+        os.sleep(5)
+        p1:holdDice_phase()
+    else
+        p1:drawScreen()
+        os.sleep(3)
+    end
 end
 -- p1:drawScreen()
-screen:output()
 --term.redirect(oldTerm)
 --print("test1")
