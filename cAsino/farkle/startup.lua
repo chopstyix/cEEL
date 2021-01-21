@@ -55,7 +55,7 @@ function setup()
     term.setPaletteColor(colors.green, 0x044906)
     width, height = term.getSize()
     screen = surface.create(width, height)
-    font = surface.loadFont(surface.load("cEEL/cAsino/blackjack/font"))
+
     diceBg = surface.load("cEEL/cAsino/farkle/diceBg.nfp")
 end
 
@@ -150,7 +150,6 @@ function countTable(table)
     return count
 end
 
-
 function Player:drawPlayerHand()
     screen:clear(colors.green)
     screen:drawSurface(drawDice(tostring(self.hand[1].value),self.hand[1].hold),SLOT_1[1],SLOT_1[2])
@@ -162,84 +161,36 @@ function Player:drawPlayerHand()
     screen:output()
 end
 
--- function Player:holdDice()
---     local loop = true
---     local count = 0
---     while loop do
---         -- refresh()
---         -- print("Select a dice to hold or use 'roll' or 'rollSkip'")
---         -- self:printDice()
---         -- local input = io.read()
---         local input_1 = tonumber(input)
---         if input == "roll" then
---         if count == 0 then
---             print("Unable to roll, please select dice to hold")
---         elseif (self:checkState("hold")) then
---             print("Score tallied, you can roll again")
---             local key = os.pullEvent("key")
---             loop = false
---         end
---         elseif input == "rollSkip" then
---         if count == 0 then
---             print("Unable to skip, please select a dice to hold")
---         elseif (self:checkState("hold")) then
---             loop = false
---             print("Score tallied, you end your turn")
---             self.flag_skip = true
---         end
---         elseif (type(input_1) == "number" and input_1 >= 1 and input_1 <=6) then
---         if self.hand[input_1].lock == true then
---             print("That dice is locked! Please try again.")
---         elseif (self.hand[input_1].hold == false) then
---             self.hand[input_1].hold = true
---             count = count + 1
---         elseif (self.hand[input_1].hold == true) then
---             self.hand[input_1].hold = false
---             count = count - 1
---         end
---         elseif input == nil then
---         print("Invalid input, please try again")
---         end
---     end
-
---     for i,v in pairs(self.hand) do
---         if self.hand[i].hold == true then
---         self.hand[i].hold = false
---         self.hand[i].lock = true
---         end
---     end
--- end
-
 function Player:holdDice_phase()
-local loop = true
-    while loop do
-        screen:clear(colors.green)
-        self:drawPlayerHand()
-        -- drawBottomButtons(buttons)
-        local event, side, xPos, yPos = os.pullEvent("monitor_touch")
-        -- xPos = xPos / 2
-        -- yPos = yPos / 2
-        for i,v in pairs(HITBOX) do
-            local x1 = HITBOX[i][1]
-            local y1 = HITBOX[i][2]
-            local x2 = HITBOX[i][3]
-            local y2 = HITBOX[i][4]
-            print("xPos:"..xPos)
-            print("yPos:"..yPos)
-            print("x1:"..x1)
-            print("y1:"..y1)
-            print("x2:"..x2)
-            print("y2:"..y2)
-            if (xPos >= x1 and xPos <= x2) and (yPos >= y1 and yPos <= y2) then
-                if self.hand[i].hold == false then
-                    self.hand[i].hold = true
-                elseif self.hand[i].hold == true then
-                    self.hand[i].hold = false
+    local loop = true
+        while loop do
+            screen:clear(colors.green)
+            self:drawPlayerHand()
+            -- drawBottomButtons(buttons)
+            local event, side, xPos, yPos = os.pullEvent("monitor_touch")
+            -- xPos = xPos / 2
+            -- yPos = yPos / 2
+            for i,v in pairs(HITBOX) do
+                local x1 = HITBOX[i][1]
+                local y1 = HITBOX[i][2]
+                local x2 = HITBOX[i][3]
+                local y2 = HITBOX[i][4]
+                print("xPos:"..xPos)
+                print("yPos:"..yPos)
+                print("x1:"..x1)
+                print("y1:"..y1)
+                print("x2:"..x2)
+                print("y2:"..y2)
+                if (xPos >= x1 and xPos <= x2) and (yPos >= y1 and yPos <= y2) then
+                    if self.hand[i].hold == false then
+                        self.hand[i].hold = true
+                    elseif self.hand[i].hold == true then
+                        self.hand[i].hold = false
+                    end
                 end
             end
+            screen:output()
         end
-        screen:output()
-    end
     return xPos, yPos
 end
 
@@ -247,6 +198,7 @@ end
 p1 = Player -- User
 p2 = Player -- Computer Opponent
 setup()
+font = surface.loadFont(surface.load("cEEL/cAsino/blackjack/font"))
 screen:clear(colors.green)
 screen:drawText("test",debugFont,0,0,colors.white)
 sleep()
