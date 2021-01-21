@@ -227,7 +227,7 @@ p1 = Player -- User
 p2 = Player -- Computer Opponent
 setup()
 
-while p1.flag_bust == false and p1.flag_skip == false do
+while p1.flag_bust == false and p1.flag_skip == false and p1.flag_quit == false do
 screen:clear(colors.green)
 p1:rollDice()
 p1:drawScreen()
@@ -242,6 +242,8 @@ p1:drawScreen()
         flag_bust = true
     end
 end
+screen:clear()
+print("Terminated")
 -- p1:drawScreen()
 --term.redirect(oldTerm)
 --print("test1")
