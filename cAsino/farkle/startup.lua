@@ -17,9 +17,9 @@ HITBOX = {
     [4] = {SLOT_4[1],SLOT_4[2],SLOT_4[1]+14,SLOT_4[2]+17},
     [5] = {SLOT_5[1],SLOT_5[2],SLOT_5[1]+14,SLOT_5[2]+17},
     [6] = {SLOT_6[1],SLOT_6[2],SLOT_6[1]+14,SLOT_6[2]+17},
-    ["Roll"] = {x1,y1,x2,y2, enabled = true}
-    ["Skip and Roll"] = {{x1, y1,x2, y2, enabled = true}
-    ["Skip and End Turn"] = {x1, y1, x2, y2, enabled = true}
+    ["Roll"] = {x1,y1,x2,y2, enabled = true},
+    ["Skip and Roll"] = {{x1, y1,x2, y2, enabled = true},
+    ["Skip and End Turn"] = {x1, y1, x2, y2, enabled = true},
 }
 
 Player = {
