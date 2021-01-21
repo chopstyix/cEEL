@@ -17,6 +17,9 @@ HITBOX = {
     [4] = {SLOT_4[1],SLOT_4[2],SLOT_4[1]+14,SLOT_4[2]+17},
     [5] = {SLOT_5[1],SLOT_5[2],SLOT_5[1]+14,SLOT_5[2]+17},
     [6] = {SLOT_6[1],SLOT_6[2],SLOT_6[1]+14,SLOT_6[2]+17},
+    ["Roll"] = {x1,y1,x2,y2, enabled = true}
+    ["Skip and Roll"] = {{x1, y1,x2, y2, enabled = true}
+    ["Skip and End Turn"] = {x1, y1, x2, y2, enabled = true}
 }
 
 Player = {
@@ -55,11 +58,6 @@ function setup()
     screen = surface.create(width, height)
     font = surface.loadFont(surface.load("cEEL/cAsino/blackjack/font"))
     diceBg = surface.load("cEEL/cAsino/farkle/diceBg.nfp")
-end
-
-function centerText(text, y, color)
-	local tWidth = surface.getTextSize(text, font)
-	screen:drawText(text, font, math.floor((width - tWidth) / 2), y, color)
 end
 
 function drawDice(value,selected)
@@ -237,6 +235,7 @@ local loop = true
     while loop do
         screen:clear(colors.green)
         self:drawPlayerHand()
+        -- drawBottomButtons(buttons)
         local event, side, xPos, yPos = os.pullEvent("monitor_touch")
         -- xPos = xPos / 2
         -- yPos = yPos / 2
@@ -287,13 +286,26 @@ end
 --     return dice
 -- end
 
+-- local function drawBottomButtons(buttons)
+--     local totalWidth = 0
+--     for _, button in ipairs(buttons) do
+--         button.width = surface.getTextSize(button.text, font) + 4
+--         totalWidth = totalWidth + button.width
+--     end
+--     local leftX = math.round((screen.width - totalWidth) / 2)
+--     local accWidth = 0
+--     for _, b in ipairs(buttons) do
+--         button(screen, b.text, b.color, leftX + accWidth, screen.height - 8, b.func)
+--         accWidth = accWidth + b.width
+--     end
+-- end
+
   -- Main Line Code -- 
--- Dice img dimensions are 13 x 9
 p1 = Player -- User
 p2 = Player -- Computer Opponent
 setup()
 screen:clear(colors.green)
--- centerText("bust",2,colors.black)
+screen:drawText("test",font,0,0,colors.white)
 p1:rollDice()
 p1:drawPlayerHand()
 if p1:checkState("roll") then
