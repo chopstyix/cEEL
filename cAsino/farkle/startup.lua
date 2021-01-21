@@ -79,6 +79,7 @@ end
     
 function Player:rollDice()
     local rolls = {math.random(6),math.random(6),math.random(6),math.random(6),math.random(6),math.random(6)}
+    debug(rolls[1],rolls[2],rolls[3],rolls[4],rolls[5],rolls[6])
     for k,v in ipairs(self.hand) do
         if self.hand[k].lock == false then -- If dice is not locked then roll a new value.
             self.hand[k].value = rolls[k]
@@ -177,14 +178,14 @@ function Player:holdDice_phase()
             local y1 = HITBOX[i][2]
             local x2 = HITBOX[i][3]
             local y2 = HITBOX[i][4]
-            term.redirect(oldTerm)
-            print("xPos:"..xPos)
-            print("yPos:"..yPos)
-            print("x1:"..x1)
-            print("y1:"..y1)
-            print("x2:"..x2)
-            print("y2:"..y2)
-            term.redirect(diceMon)
+            -- term.redirect(oldTerm)
+            -- print("xPos:"..xPos)
+            -- print("yPos:"..yPos)
+            -- print("x1:"..x1)
+            -- print("y1:"..y1)
+            -- print("x2:"..x2)
+            -- print("y2:"..y2)
+            -- term.redirect(diceMon)
             if (xPos >= x1 and xPos <= x2) and (yPos >= y1 and yPos <= y2) then
                 if i >= 1 and i <= 6 then
                     if self.hand[i].hold == false and self.hand[i].lock == false then
