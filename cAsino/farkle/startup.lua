@@ -88,6 +88,7 @@ function Player:rollDice()
 end
 
 function Player:checkState(state)
+    local loop = true
     local valid = false
     local logtable = {}
     local count = 0
@@ -116,7 +117,7 @@ function Player:checkState(state)
 
     -- for i,v in pairs (self.hand) do
         -- if self.hand[i].flag_count == false then
-    repeat
+    while loop do
         if (count == 6) then
             debug("Detected a 6 dice straight")
             valid = true
@@ -272,11 +273,12 @@ function Player:checkState(state)
                             valid = true
                         end
                     end
+                else
+                    loop = false
                 end
             end
         end
-    print (self:card_counter())
-    until (self:card_counter() == 6)
+    end
 return valid, score
 end
 
