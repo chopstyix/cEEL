@@ -222,7 +222,7 @@ setup()
 screen:clear(colors.green)
 p1:rollDice()
 p1:drawScreen()
-while p1.flag_bust do
+while p1.flag_bust == false do
     if p1:checkState("roll") then
         p1:drawScreen()
         screen:output()
