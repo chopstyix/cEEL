@@ -173,11 +173,11 @@ function Player:holdDice_phase()
             local event, side, xPos, yPos = os.pullEvent("monitor_touch")
             -- xPos = xPos / 2
             -- yPos = yPos / 2
-            for i,v in pairs(HITBOX) do
-                local x1 = HITBOX[i][1]
-                local y1 = HITBOX[i][2]
-                local x2 = HITBOX[i][3]
-                local y2 = HITBOX[i][4]
+            for i,v in pairs(DICE_HITBOX) do
+                local x1 = DICE_HITBOX[i][1]
+                local y1 = DICE_HITBOX[i][2]
+                local x2 = DICE_HITBOX[i][3]
+                local y2 = DICE_HITBOX[i][4]
                 print("xPos:"..xPos)
                 print("yPos:"..yPos)
                 print("x1:"..x1)
@@ -208,6 +208,7 @@ p1:drawPlayerHand()
 if p1:checkState("roll") then
     p1:drawPlayerHand()
     screen:drawText("test",font,0,0,colors.white)
+    screen:output()
     os.sleep(5)
     p1:holdDice_phase()
 else
