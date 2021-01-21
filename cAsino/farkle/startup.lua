@@ -271,12 +271,15 @@ function Player:checkState(state)
                         debug("Detected a 5")
                         valid = true
                 end
-                loop = false
             end
+            debug("Loop is now false")
+            loop = false
         end
     end
-return valid, score
+    turn_score = score
+return valid
 end
+
 
 function countTable(table)
     local count = 0
