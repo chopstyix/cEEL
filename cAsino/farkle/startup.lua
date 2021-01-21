@@ -40,24 +40,22 @@ Player = {
     hold = {},
   }
 
-function setup()
-    surface = dofile("cEEL/cAsino/farkle/surface")
-    diceMon = peripheral.wrap("monitor_14")
-    displayMon = peripheral.wrap("monitor_13")
-    drive = peripheral.wrap("bottom")
-    rednet.open("right")
-    speaker = peripheral.find("speaker")
-    diceMon.setTextScale(0.5)
-    term.redirect(diceMon)
-    term.setPaletteColor(colors.lightGray, 0xc5c5c5)
-    term.setPaletteColor(colors.orange, 0xf15c5c)
-    term.setPaletteColor(colors.gray, 0x363636)
-    term.setPaletteColor(colors.green, 0x044906)
-    width, height = term.getSize()
-    screen = surface.create(width, height)
-    debugFont = surface.loadFont(surface.load("cEEL/cAsino/blackjack/font"))
-    diceBg = surface.load("cEEL/cAsino/farkle/diceBg.nfp")
-end
+surface = dofile("cEEL/cAsino/farkle/surface")
+diceMon = peripheral.wrap("monitor_14")
+displayMon = peripheral.wrap("monitor_13")
+drive = peripheral.wrap("bottom")
+rednet.open("right")
+speaker = peripheral.find("speaker")
+diceMon.setTextScale(0.5)
+term.redirect(diceMon)
+term.setPaletteColor(colors.lightGray, 0xc5c5c5)
+term.setPaletteColor(colors.orange, 0xf15c5c)
+term.setPaletteColor(colors.gray, 0x363636)
+term.setPaletteColor(colors.green, 0x044906)
+width, height = term.getSize()
+screen = surface.create(width, height)
+font = surface.loadFont(surface.load("cEEL/cAsino/blackjack/font"))
+diceBg = surface.load("cEEL/cAsino/farkle/diceBg.nfp")
 
 function drawDice(value,selected)
     -- local value_buffer = value
@@ -265,7 +263,7 @@ end
   -- Main Line Code -- 
 p1 = Player -- User
 p2 = Player -- Computer Opponent
-setup()
+-- setup()
 screen:clear(colors.green)
 screen:drawText("test",debugFont,0,0,colors.white)
 p1:rollDice()
