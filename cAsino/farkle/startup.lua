@@ -93,6 +93,7 @@ function Player:checkState(state)
     local logtable = {}
     local count = 0
     local score = 0
+    local hold_cards = 0
     -- I don't understand how this works, but it count's the number of times each diceValue is repeated.
     if state == "hold" then
         debug("Checking hold")
@@ -109,12 +110,12 @@ function Player:checkState(state)
             if self.hand[i].lock == false then
                 debug(self.hand[i].value)
                 local index = v.value
-                logtable[index] = (logtable[index] or 0) + 1
+                logtable[index] = (logtable[index] or 0) + 1    
             end
         end
     end
-    count = countTable(logtable)
 
+    count = countTable(logtable)
     -- for i,v in pairs (self.hand) do
         -- if self.hand[i].flag_count == false then
     while loop do
@@ -255,28 +256,22 @@ function Player:checkState(state)
                             self.hand[i].flag_count = true
                         end
                     end
-                elseif (diceValue == 1) then
-                    for i,v in pairs(self.hand) do
-                        if self.hand[i].value == diceValue and self.hand[i].flag_count == false then
-                            self.hand[i].flag_count = true
-                            score = score + 100
-                            debug("Detected a 1")
-                            valid = true
-                        end
-                    end
-                elseif (diceValue == 5) then
-                    for i,v in pairs(self.hand) do
-                        if self.hand[i].value == diceValue and self.hand[i].flag_count == false then
-                            self.hand[i].flag_count = true
-                            score = score + 50
-                            debug("Detected a 5")
-                            valid = true
-                        end
-                    end
-                else
-                    loop = false
                 end
             end
+            for i,v in pairs(self.hand) do
+                if (v == 1) and self.hand[i].flag_count == false then
+                        self.hand[i].flag_count = true
+                        score = score + 100
+                        debug("Detected a 1")
+                        valid = true
+                elseif (v == 5) and self.hand[i].flag_count == false then
+                        self.hand[i].flag_count = true
+                        score = score + 50
+                        debug("Detected a 5")
+                        valid = true
+                end
+            end
+            loop = false
         end
     end
 return valid, score
