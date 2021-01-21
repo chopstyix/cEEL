@@ -94,7 +94,7 @@ function Player:checkState(state)
         debug("Checking hold")
         for i,v in pairs(self.hand) do
             if self.hand[i].hold == true then
-                print(self.hand[i].value)
+                debug(self.hand[i].value)
                 local index = v.value
                 logtable[index] = (logtable[index] or 0) + 1
             end
@@ -103,7 +103,7 @@ function Player:checkState(state)
         debug("Checking rolls")
         for i,v in pairs(self.hand) do
             if self.hand[i].lock == false then
-                print(self.hand[i].value)
+                debug(self.hand[i].value)
                 local index = v.value
                 logtable[index] = (logtable[index] or 0) + 1
             end
@@ -119,7 +119,7 @@ function Player:checkState(state)
         debug("Detected a 5 dice straight (1 to 5)")
         valid = true
         elseif (logtable[1] == 2) and (logtable[5] == 6) then
-        -- print("Detected a 5 dice straight (2 to 6)")
+        debug("Detected a 5 dice straight (2 to 6)")
         valid = true
         end
     else
@@ -129,7 +129,7 @@ function Player:checkState(state)
             debug("Detected a minimum of 3 of a kind")
             valid = true
         elseif (diceValue == 1 or diceValue == 5) then
-            -- print("Detected a 1 or a 5")
+            debug("Detected a 1 or a 5")
             valid = true
         end
         end
