@@ -75,19 +75,12 @@ function drawDice(value,selected)
 end
     
 function Player:rollDice()
-    -- local x = 1
     local rolls = {math.random(6),math.random(6),math.random(6),math.random(6),math.random(6),math.random(6)}
-    -- print("Showing rolls")
-    -- print(rolls[1],rolls[2],rolls[3],rolls[4],rolls[5],rolls[6])
-    -- os.sleep(2)
     for k,v in ipairs(self.hand) do
-        -- print(k,v)
         if self.hand[k].lock == false then -- If dice is not locked then roll a new value.
-        self.hand[k].value = rolls[k]
-        -- x = x + 1
+            self.hand[k].value = rolls[k]
         end
     end
-    -- x = 0
 end
 
 function Player:checkState(state)
@@ -198,9 +191,18 @@ function Player:holdDice_phase()
                         elseif self.hand[i].hold == true then
                             self.hand[i].hold = false
                         end
-                    elseif i == 7 then
+                    elseif i == 7 then -- Roll
                         loop = false
-                    elseif i == 8 then
+                        if self.checkState("hold") then
+                            for i,v in pairs(self.hand) do
+                                if self.hand[i].hold == true then
+                                  self.hand[i].hold = false
+                                  self.hand[i].lock = true
+                                end
+                              end
+                            end
+                        end
+                    elseif i == 8 then -- 
                         loop = false
                         self.flag_skip = true
                     elseif i == 9 then
@@ -211,7 +213,6 @@ function Player:holdDice_phase()
             end
             screen:output()
         end
-    return xPos, yPos
 end
 
 function drawButton(text, bg)
@@ -227,7 +228,7 @@ p1 = Player -- User
 p2 = Player -- Computer Opponent
 setup()
 
-while p1.flag_bust == false or p1.flag_skip == false do
+while p1.flag_bust == false and p1.flag_skip == false do
 screen:clear(colors.green)
 p1:rollDice()
 p1:drawScreen()
