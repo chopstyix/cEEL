@@ -10,13 +10,16 @@ SLOT_4 = {1,18}
 SLOT_5 = {19,18}
 SLOT_6 = {37,18}
 
-HITBOX = {
+DICE_HITBOX = {
     [1] = {SLOT_1[1],SLOT_1[2],SLOT_1[1]+14,SLOT_1[2]+17},
     [2] = {SLOT_2[1],SLOT_2[2],SLOT_2[1]+14,SLOT_2[2]+17},
     [3] = {SLOT_3[1],SLOT_3[2],SLOT_3[1]+14,SLOT_3[2]+17},
     [4] = {SLOT_4[1],SLOT_4[2],SLOT_4[1]+14,SLOT_4[2]+17},
     [5] = {SLOT_5[1],SLOT_5[2],SLOT_5[1]+14,SLOT_5[2]+17},
     [6] = {SLOT_6[1],SLOT_6[2],SLOT_6[1]+14,SLOT_6[2]+17},
+}
+
+ACTION_HITBOX = {
     ["Roll"] = {x1,y1,x2,y2, enabled = true},
     ["Skip and Roll"] = {x1, y1,x2, y2, enabled = true},
     ["Skip and End Turn"] = {x1, y1, x2, y2, enabled = true},
@@ -200,12 +203,12 @@ p2 = Player -- Computer Opponent
 setup()
 
 screen:clear(colors.green)
-os.sleep(5)
 p1:rollDice()
 p1:drawPlayerHand()
 if p1:checkState("roll") then
     p1:drawPlayerHand()
     screen:drawText("test",font,0,0,colors.white)
+    os.sleep(5)
     p1:holdDice_phase()
 else
     p1:drawPlayerHand()
