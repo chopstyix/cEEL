@@ -240,9 +240,9 @@ p1:rollDice()
     if p1:checkState("roll") then
         p1:holdDice_phase()
     else
+        self.flag_bust = true
         p1:drawScreen()
-        os.sleep(3)
-        flag_bust = true
+        os.sleep(5)
     end
 end
 screen:clear()
