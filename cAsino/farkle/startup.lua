@@ -78,11 +78,11 @@ function drawDice(value,selected,locked)
 end
     
 function Player:rollDice()
-    local rolls = {math.random(6),math.random(6),math.random(6),math.random(6),math.random(6),math.random(6)}
+    local rolls = {math.random(6),math.random(6),math.random(6),math.random(6),math.random(6),math.random(6),math.random(6),math.random(6),math.random(6),math.random(6),math.random(6),math.random(6)}
     debug(rolls[1],rolls[2],rolls[3],rolls[4],rolls[5],rolls[6])
     for k,v in ipairs(self.hand) do
         if self.hand[k].lock == false then -- If dice is not locked then roll a new value.
-            self.hand[k].value = rolls[k]
+            self.hand[k].value = rolls[k+math.random(0,6)]
         end
     end
 end
