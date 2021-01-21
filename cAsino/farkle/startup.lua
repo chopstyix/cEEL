@@ -158,6 +158,7 @@ function Player:drawScreen()
     screen:drawSurface(drawButton("ROLL",colors.white),58,2)
     screen:drawSurface(drawButton("SKIP",colors.white),58,12)
     screen:drawSurface(drawButton("QUIT",colors.red),58,30)
+    screen:drawSurface(drawButton(self.score,colors.white)0,30)
     if self.flag_bust then
         screen:drawSurface(drawButton("BUST",colors.red),25,15)
     end
