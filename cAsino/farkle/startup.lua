@@ -192,7 +192,6 @@ function Player:holdDice_phase()
                         self.hand[i].hold = false
                     end
                 elseif i == 7 then -- Roll
-                    loop = false
                     if self.checkState("hold") then
                         for i,v in pairs(self.hand) do
                             if self.hand[i].hold == true then
@@ -200,6 +199,7 @@ function Player:holdDice_phase()
                                 self.hand[i].lock = true
                             end
                         end
+                        loop = false
                     end
                 elseif i == 8 then -- 
                     loop = false
