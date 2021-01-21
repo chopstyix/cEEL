@@ -48,7 +48,6 @@ function setup()
     rednet.open("right")
     speaker = peripheral.find("speaker")
     diceMon.setTextScale(0.5)
-    --oldTerm = term.redirect(diceMon)
     term.redirect(diceMon)
     term.setPaletteColor(colors.lightGray, 0xc5c5c5)
     term.setPaletteColor(colors.orange, 0xf15c5c)
@@ -56,7 +55,7 @@ function setup()
     term.setPaletteColor(colors.green, 0x044906)
     width, height = term.getSize()
     screen = surface.create(width, height)
-    font = surface.loadFont(surface.load("cEEL/cAsino/blackjack/font"))
+    debugFont = surface.loadFont(surface.load("cEEL/cAsino/blackjack/font"))
     diceBg = surface.load("cEEL/cAsino/farkle/diceBg.nfp")
 end
 
@@ -263,49 +262,12 @@ local loop = true
     return xPos, yPos
 end
 
--- function button(surface, text, bg, x, y, func, center)
--- local button = getButtonSurface(text, bg)
--- if center then
---     x = math.floor(x - button.width / 2)
--- end
--- surface:drawSurface(button, x, y)
--- buttons[text] = {x=x, y=y, width=button.width, height=button.height, cb=func}
--- return button
--- end
--- Surface Stuff
--- function drawDice(selected)
---     -- local value_buffer = value
---     local dice = surface.create(17,17)
---     local number = surface.load("cEEL/cAsino/farkle/"..value..".nfp")
---     local highlight = surface.load("cEEL/cAsino/farkle/highlight.nfp")
---     dice:drawSurface(diceBg, 0, 0)
---     dice:drawSurface(number, 0, 0)
---     if selected then
---         dice:drawSurface(highlight, 0, 0)
---     end
---     return dice
--- end
-
--- local function drawBottomButtons(buttons)
---     local totalWidth = 0
---     for _, button in ipairs(buttons) do
---         button.width = surface.getTextSize(button.text, font) + 4
---         totalWidth = totalWidth + button.width
---     end
---     local leftX = math.round((screen.width - totalWidth) / 2)
---     local accWidth = 0
---     for _, b in ipairs(buttons) do
---         button(screen, b.text, b.color, leftX + accWidth, screen.height - 8, b.func)
---         accWidth = accWidth + b.width
---     end
--- end
-
   -- Main Line Code -- 
 p1 = Player -- User
 p2 = Player -- Computer Opponent
 setup()
 screen:clear(colors.green)
-screen:drawText("test",font,0,0,colors.white)
+screen:drawText("test",debugFont,0,0,colors.white)
 p1:rollDice()
 p1:drawPlayerHand()
 if p1:checkState("roll") then
