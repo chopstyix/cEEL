@@ -135,7 +135,7 @@ function Player:checkState(state)
                 debug("Detected a 5 dice straight (1 to 5)")
                 valid = true
                 score = score + 500
-                for i,v in pairs(self.hand) do
+                for i,v in ipairs(self.hand) do
                     if v.value == 1 then
                         self.hand[i].flag_count = true
                     elseif v.value == 2 then
@@ -209,7 +209,7 @@ function Player:checkState(state)
                     elseif diceValue == 6 then
                         score = score + 2400
                     end
-                    for i,v in pairs(self.hand) do
+                    for i,v in ipairs(self.hand) do
                         if self.hand[i].value == diceValue then
                             self.hand[i].flag_count = true
                         end
@@ -230,7 +230,7 @@ function Player:checkState(state)
                     elseif diceValue == 6 then
                         score = score + 1200
                     end
-                    for i,v in pairs(self.hand) do
+                    for i,v in ipairs(self.hand) do
                         if self.hand[i].value == diceValue then
                             self.hand[i].flag_count = true
                         end
@@ -251,14 +251,14 @@ function Player:checkState(state)
                     elseif diceValue == 6 then
                         score = score + 600
                     end
-                    for i,v in pairs(self.hand) do
+                    for i,v in ipairs(self.hand) do
                         if self.hand[i].value == diceValue then
                             self.hand[i].flag_count = true
                         end
                     end
                 end
             end
-            for i,v in pairs(self.hand) do
+            for i,v in ipairs(self.hand) do
                 if (v == 1) and self.hand[i].flag_count == false then
                         self.hand[i].flag_count = true
                         score = score + 100
@@ -274,7 +274,7 @@ function Player:checkState(state)
             loop = false
         end
     end
-return valid
+return valid, score
 end
 
 function countTable(table)
@@ -346,7 +346,7 @@ function Player:holdDice_phase()
                     -- Calculate potential value everytime a dice is toggled with
                 elseif i == 7 then -- Roll
                     if self:checkState("hold") then
-                        for i,v in pairs(self.hand) do
+                        for i,v in ipairs(self.hand) do
                             if self.hand[i].hold == true then
                                 self.hand[i].hold = false
                                 self.hand[i].lock = true
