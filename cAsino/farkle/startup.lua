@@ -10,22 +10,24 @@ SLOT_4 = {1,18}
 SLOT_5 = {19,18}
 SLOT_6 = {37,18}
 
-DICE_HITBOX = {
+HITBOX = {
     [1] = {SLOT_1[1],SLOT_1[2],SLOT_1[1]+14,SLOT_1[2]+17},
     [2] = {SLOT_2[1],SLOT_2[2],SLOT_2[1]+14,SLOT_2[2]+17},
     [3] = {SLOT_3[1],SLOT_3[2],SLOT_3[1]+14,SLOT_3[2]+17},
     [4] = {SLOT_4[1],SLOT_4[2],SLOT_4[1]+14,SLOT_4[2]+17},
     [5] = {SLOT_5[1],SLOT_5[2],SLOT_5[1]+14,SLOT_5[2]+17},
     [6] = {SLOT_6[1],SLOT_6[2],SLOT_6[1]+14,SLOT_6[2]+17},
+    [7] = {59,3,79,9, enabled = true}, -- Roll
+    [8] = {59,13,77,19, enabled = true}, -- Skip
+    [9] = {59,32,79,39, enabled = true}, -- Quit
 }
 
 ACTION_HITBOX = {
-    ["Roll"] = {57,2,20,2+7, enabled = true},
-    ["Skip and Roll"] = {57,12,x2,12+7, enabled = true},
-    ["Skip and End Turn"] = {57,30, x2,12+7, enabled = true},
+
 }
 
 Player = {
+    flag_quit = false,
     flag_skip = false,
     flag_bust = false,
     input = nil,
@@ -194,10 +196,20 @@ function Player:holdDice_phase()
                 print("y2:"..y2)
                 term.redirect(diceMon)
                 if (xPos >= x1 and xPos <= x2) and (yPos >= y1 and yPos <= y2) then
-                    if self.hand[i].hold == false then
-                        self.hand[i].hold = true
-                    elseif self.hand[i].hold == true then
-                        self.hand[i].hold = false
+                    if i >= 1 and i <= 6 then
+                        if self.hand[i].hold == false then
+                            self.hand[i].hold = true
+                        elseif self.hand[i].hold == true then
+                            self.hand[i].hold = false
+                        end
+                    elseif i == 7 then
+                        loop = false
+                    elseif i == 8 then
+                        loop = false
+                        self.flag_skip = true
+                    elseif i == 9 then
+                        loop = false
+                        self.flag_quit = true
                     end
                 end
             end
@@ -222,7 +234,7 @@ setup()
 screen:clear(colors.green)
 p1:rollDice()
 p1:drawScreen()
-while p1.flag_bust == false do
+while p1.flag_bust == false or p1.flag_skip == false do
     if p1:checkState("roll") then
         p1:drawScreen()
         screen:output()
