@@ -259,6 +259,7 @@ function Player:checkState(state)
                 end
             end
             for i,v in ipairs(self.hand) do
+                print("i: "..i.. "v: "..v)
                 if (v == 1) and self.hand[i].flag_count == false then
                         self.hand[i].flag_count = true
                         score = score + 100
@@ -395,6 +396,7 @@ while p1.flag_bust == false and p1.flag_skip == false and p1.flag_quit == false 
     p1:rollDice()
     if p1:checkState("roll") then
         p1:holdDice_phase()
+        -- Update Score
     else
         p1.flag_bust = true
         p1:drawScreen()
