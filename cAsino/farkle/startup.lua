@@ -73,6 +73,7 @@ function drawDice(value,selected,locked)
         dice:drawSurface(highlight, 0, 0)
     elseif locked then
         dice:drawSurface(lock, 0, 0)
+    end
     return dice
 end
     
