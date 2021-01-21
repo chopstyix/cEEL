@@ -55,7 +55,7 @@ function setup()
     term.setPaletteColor(colors.green, 0x044906)
     width, height = term.getSize()
     screen = surface.create(width, height)
-
+    font = surface.loadFont(surface.load("cEEL/cAsino/blackjack/font"))
     diceBg = surface.load("cEEL/cAsino/farkle/diceBg.nfp")
 end
 
@@ -198,14 +198,14 @@ end
 p1 = Player -- User
 p2 = Player -- Computer Opponent
 setup()
-font = surface.loadFont(surface.load("cEEL/cAsino/blackjack/font"))
+
 screen:clear(colors.green)
-screen:drawText("test",font,0,0,colors.white)
 os.sleep(5)
 p1:rollDice()
 p1:drawPlayerHand()
 if p1:checkState("roll") then
     p1:drawPlayerHand()
+    screen:drawText("test",font,0,0,colors.white)
     p1:holdDice_phase()
 else
     p1:drawPlayerHand()
