@@ -201,7 +201,7 @@ setup()
 font = surface.loadFont(surface.load("cEEL/cAsino/blackjack/font"))
 screen:clear(colors.green)
 screen:drawText("test",font,0,0,colors.white)
-sleep()
+os.sleep(5)
 p1:rollDice()
 p1:drawPlayerHand()
 if p1:checkState("roll") then
