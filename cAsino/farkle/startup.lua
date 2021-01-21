@@ -200,7 +200,7 @@ p2 = Player -- Computer Opponent
 setup()
 font = surface.loadFont(surface.load("cEEL/cAsino/blackjack/font"))
 screen:clear(colors.green)
-screen:drawText("test",debugFont,0,0,colors.white)
+screen:drawText("test",font,0,0,colors.white)
 sleep()
 p1:rollDice()
 p1:drawPlayerHand()
