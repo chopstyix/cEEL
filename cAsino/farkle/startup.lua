@@ -97,7 +97,7 @@ function Player:checkState(state)
     -- I don't understand how this works, but it count's the number of times each diceValue is repeated.
     if state == "hold" then
         debug("Checking hold")
-        for i,v in pairs(self.hand) do
+        for i,v in ipairs(self.hand) do
             if self.hand[i].hold == true then
                 debug(self.hand[i].value)
                 local index = v.value
@@ -106,7 +106,7 @@ function Player:checkState(state)
         end
     elseif state == "roll" then
         debug("Checking rolls")
-        for i,v in pairs(self.hand) do
+        for i,v in ipairs(self.hand) do
             if self.hand[i].lock == false then
                 debug(self.hand[i].value)
                 local index = v.value
@@ -274,7 +274,7 @@ function Player:checkState(state)
             loop = false
         end
     end
-return valid, score
+return valid
 end
 
 function countTable(table)
