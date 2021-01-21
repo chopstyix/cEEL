@@ -255,7 +255,6 @@ function Player:checkState(state)
                         end
                     end
                 elseif (diceValue == 1) and self.hand[i].flag_count == false then
-                    if
                     debug("Detected a 1")
                     valid = true
                     score = score + 100
