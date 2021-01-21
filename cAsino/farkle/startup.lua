@@ -40,22 +40,24 @@ Player = {
     hold = {},
   }
 
-surface = dofile("cEEL/cAsino/farkle/surface")
-diceMon = peripheral.wrap("monitor_14")
-displayMon = peripheral.wrap("monitor_13")
-drive = peripheral.wrap("bottom")
-rednet.open("right")
-speaker = peripheral.find("speaker")
-diceMon.setTextScale(0.5)
-term.redirect(diceMon)
-term.setPaletteColor(colors.lightGray, 0xc5c5c5)
-term.setPaletteColor(colors.orange, 0xf15c5c)
-term.setPaletteColor(colors.gray, 0x363636)
-term.setPaletteColor(colors.green, 0x044906)
-width, height = term.getSize()
-screen = surface.create(width, height)
-font = surface.loadFont(surface.load("cEEL/cAsino/blackjack/font"))
-diceBg = surface.load("cEEL/cAsino/farkle/diceBg.nfp")
+function setup()
+    surface = dofile("cEEL/cAsino/farkle/surface")
+    diceMon = peripheral.wrap("monitor_14")
+    displayMon = peripheral.wrap("monitor_13")
+    drive = peripheral.wrap("bottom")
+    rednet.open("right")
+    speaker = peripheral.find("speaker")
+    diceMon.setTextScale(0.5)
+    term.redirect(diceMon)
+    term.setPaletteColor(colors.lightGray, 0xc5c5c5)
+    term.setPaletteColor(colors.orange, 0xf15c5c)
+    term.setPaletteColor(colors.gray, 0x363636)
+    term.setPaletteColor(colors.green, 0x044906)
+    width, height = term.getSize()
+    screen = surface.create(width, height)
+    font = surface.loadFont(surface.load("cEEL/cAsino/blackjack/font"))
+    diceBg = surface.load("cEEL/cAsino/farkle/diceBg.nfp")
+end
 
 function drawDice(value,selected)
     -- local value_buffer = value
@@ -208,25 +210,6 @@ end
 --     end
 -- end
 
-function setup()
-    surface = dofile("cEEL/cAsino/farkle/surface")
-    diceMon = peripheral.wrap("monitor_14")
-    displayMon = peripheral.wrap("monitor_13")
-    drive = peripheral.wrap("bottom")
-    rednet.open("right")
-    speaker = peripheral.find("speaker")
-    diceMon.setTextScale(0.5)
-    --oldTerm = term.redirect(diceMon)
-    term.redirect(diceMon)
-    term.setPaletteColor(colors.lightGray, 0xc5c5c5)
-    term.setPaletteColor(colors.orange, 0xf15c5c)
-    term.setPaletteColor(colors.gray, 0x363636)
-    term.setPaletteColor(colors.green, 0x044906)
-    width, height = term.getSize()
-    screen = surface.create(width, height)
-    diceBg = surface.load("cEEL/cAsino/farkle/diceBg.nfp")
-end
-
 function Player:holdDice_phase()
 local loop = true
     while loop do
@@ -266,6 +249,7 @@ p2 = Player -- Computer Opponent
 -- setup()
 screen:clear(colors.green)
 screen:drawText("test",debugFont,0,0,colors.white)
+sleep()
 p1:rollDice()
 p1:drawPlayerHand()
 if p1:checkState("roll") then
