@@ -225,6 +225,7 @@ function drawButton(text, bg)
 end
 
 function debug(string)
+    term.clear()
     term.redirect(oldTerm)
     print(string)
     term.redirect(diceMon)
