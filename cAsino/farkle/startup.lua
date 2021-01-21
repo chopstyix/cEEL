@@ -121,12 +121,12 @@ function Player:checkState(state)
             debug("Detected a 6 dice straight")
             valid = true
             score = score + 1500
-            self.hand[1].flag_count == true
-            self.hand[2].flag_count == true
-            self.hand[3].flag_count == true
-            self.hand[4].flag_count == true
-            self.hand[5].flag_count == true
-            self.hand[6].flag_count == true
+            self.hand[1].flag_count = true
+            self.hand[2].flag_count = true
+            self.hand[3].flag_count = true
+            self.hand[4].flag_count = true
+            self.hand[5].flag_count = true
+            self.hand[6].flag_count = true
             count = 0
         elseif (count == 5) then
             if (logtable[1] == 1) and (logtable[5] == 5) then
@@ -209,7 +209,7 @@ function Player:checkState(state)
                     end
                     for i,v in pairs(self.hand) do
                         if self.hand[i].value == diceValue then
-                            self.hand[i].flag_count == true
+                            self.hand[i].flag_count = true
                         end
                     end
                 elseif (match == 4) then
@@ -230,7 +230,7 @@ function Player:checkState(state)
                     end
                     for i,v in pairs(self.hand) do
                         if self.hand[i].value == diceValue then
-                            self.hand[i].flag_count == true
+                            self.hand[i].flag_count = true
                         end
                     end
                 elseif (match == 3) then
@@ -251,7 +251,7 @@ function Player:checkState(state)
                     end
                     for i,v in pairs(self.hand) do
                         if self.hand[i].value == diceValue then
-                            self.hand[i].flag_count == true
+                            self.hand[i].flag_count = true
                         end
                     end
                 elseif (diceValue == 1) and self.hand[i].flag_count == false then
@@ -259,12 +259,12 @@ function Player:checkState(state)
                     debug("Detected a 1")
                     valid = true
                     score = score + 100
-                    self.hand[i].flag_count == true
+                    self.hand[i].flag_count = true
                 elseif (diceValue == 5) and self.hand[i].flag_count == false then
                     debug("Detected a 5")
                     valid = true
                     score = score + 50
-                    self.hand[i].flag_count == true
+                    self.hand[i].flag_count = true
                 end
             end
         end
