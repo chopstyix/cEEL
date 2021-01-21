@@ -117,7 +117,7 @@ function Player:checkState(state)
     -- for i,v in pairs (self.hand) do
         -- if self.hand[i].flag_count == false then
     repeat
-        if (count == 6) and  then
+        if (count == 6) then
             debug("Detected a 6 dice straight")
             valid = true
             score = score + 1500
