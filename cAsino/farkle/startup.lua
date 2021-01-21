@@ -164,55 +164,54 @@ end
 
 function Player:holdDice_phase()
     local loop = true
-        while loop do
-            screen:clear(colors.green)
-            self:drawScreen()
-            -- drawBottomButtons(buttons)
-            local event, side, xPos, yPos = os.pullEvent("monitor_touch")
-            -- xPos = xPos / 2
-            -- yPos = yPos / 2
-            for i,v in pairs(HITBOX) do
-                local x1 = HITBOX[i][1]
-                local y1 = HITBOX[i][2]
-                local x2 = HITBOX[i][3]
-                local y2 = HITBOX[i][4]
-                term.redirect(oldTerm)
-                print("xPos:"..xPos)
-                print("yPos:"..yPos)
-                print("x1:"..x1)
-                print("y1:"..y1)
-                print("x2:"..x2)
-                print("y2:"..y2)
-                term.redirect(diceMon)
-                if (xPos >= x1 and xPos <= x2) and (yPos >= y1 and yPos <= y2) then
-                    if i >= 1 and i <= 6 then
-                        if self.hand[i].hold == false then
-                            self.hand[i].hold = true
-                        elseif self.hand[i].hold == true then
-                            self.hand[i].hold = false
-                        end
-                    elseif i == 7 then -- Roll
-                        loop = false
-                        if self.checkState("hold") then
-                            for i,v in pairs(self.hand) do
-                                if self.hand[i].hold == true then
-                                  self.hand[i].hold = false
-                                  self.hand[i].lock = true
-                                end
-                              end
+    while loop do
+        screen:clear(colors.green)
+        self:drawScreen()
+        -- drawBottomButtons(buttons)
+        local event, side, xPos, yPos = os.pullEvent("monitor_touch")
+        -- xPos = xPos / 2
+        -- yPos = yPos / 2
+        for i,v in pairs(HITBOX) do
+            local x1 = HITBOX[i][1]
+            local y1 = HITBOX[i][2]
+            local x2 = HITBOX[i][3]
+            local y2 = HITBOX[i][4]
+            term.redirect(oldTerm)
+            print("xPos:"..xPos)
+            print("yPos:"..yPos)
+            print("x1:"..x1)
+            print("y1:"..y1)
+            print("x2:"..x2)
+            print("y2:"..y2)
+            term.redirect(diceMon)
+            if (xPos >= x1 and xPos <= x2) and (yPos >= y1 and yPos <= y2) then
+                if i >= 1 and i <= 6 then
+                    if self.hand[i].hold == false then
+                        self.hand[i].hold = true
+                    elseif self.hand[i].hold == true then
+                        self.hand[i].hold = false
+                    end
+                elseif i == 7 then -- Roll
+                    loop = false
+                    if self.checkState("hold") then
+                        for i,v in pairs(self.hand) do
+                            if self.hand[i].hold == true then
+                                self.hand[i].hold = false
+                                self.hand[i].lock = true
                             end
                         end
-                    elseif i == 8 then -- 
-                        loop = false
-                        self.flag_skip = true
-                    elseif i == 9 then
-                        loop = false
-                        self.flag_quit = true
                     end
+                elseif i == 8 then -- 
+                    loop = false
+                    self.flag_skip = true
+                elseif i == 9 then
+                    loop = false
+                    self.flag_quit = true
                 end
             end
-            screen:output()
         end
+        screen:output()
+    end
 end
 
 function drawButton(text, bg)
