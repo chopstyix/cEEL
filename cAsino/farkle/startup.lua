@@ -161,9 +161,9 @@ function Player:drawScreen()
     screen:drawSurface(drawDice(tostring(self.hand[4].value),self.hand[4].hold),SLOT_4[1],SLOT_4[2])
     screen:drawSurface(drawDice(tostring(self.hand[5].value),self.hand[5].hold),SLOT_5[1],SLOT_5[2])
     screen:drawSurface(drawDice(tostring(self.hand[6].value),self.hand[6].hold),SLOT_6[1],SLOT_6[2])
-    screen:drawSurface(drawButton("ROLL",colors.white),60,2)
-    screen:drawSurface(drawButton("SKIP",colors.white),60,12)
-    screen:drawSurface(drawButton("QUIT",colors.red),60,30)
+    screen:drawSurface(drawButton("ROLL",colors.white),59,2)
+    screen:drawSurface(drawButton("SKIP",colors.white),59,12)
+    screen:drawSurface(drawButton("QUIT",colors.red),59,30)
     screen:output()
 end
 
