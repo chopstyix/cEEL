@@ -61,16 +61,18 @@ function setup()
     diceBg = surface.load("cEEL/cAsino/farkle/diceBg.nfp")
 end
 
-function drawDice(value,selected)
+function drawDice(value,selected,locked)
     -- local value_buffer = value
     local dice = surface.create(16,14)
     local number = surface.load("cEEL/cAsino/farkle/"..value..".nfp")
     local highlight = surface.load("cEEL/cAsino/farkle/highlight.nfp")
+    local lock = surface.load("cEEL/cAsino/farkle/lock.nfp")
     dice:drawSurface(diceBg, 0, 0)
     dice:drawSurface(number, 0, 0)
     if selected then
         dice:drawSurface(highlight, 0, 0)
-    end
+    elseif locked then
+        dice:drawSurface(lock, 0, 0)
     return dice
 end
     
@@ -145,12 +147,12 @@ end
 
 function Player:drawScreen()
     screen:clear(colors.green)
-    screen:drawSurface(drawDice(tostring(self.hand[1].value),self.hand[1].hold),SLOT_1[1],SLOT_1[2])
-    screen:drawSurface(drawDice(tostring(self.hand[2].value),self.hand[2].hold),SLOT_2[1],SLOT_2[2])
-    screen:drawSurface(drawDice(tostring(self.hand[3].value),self.hand[3].hold),SLOT_3[1],SLOT_3[2])
-    screen:drawSurface(drawDice(tostring(self.hand[4].value),self.hand[4].hold),SLOT_4[1],SLOT_4[2])
-    screen:drawSurface(drawDice(tostring(self.hand[5].value),self.hand[5].hold),SLOT_5[1],SLOT_5[2])
-    screen:drawSurface(drawDice(tostring(self.hand[6].value),self.hand[6].hold),SLOT_6[1],SLOT_6[2])
+    screen:drawSurface(drawDice(tostring(self.hand[1].value),self.hand[1].hold,self.hand[1].lock),SLOT_1[1],SLOT_1[2])
+    screen:drawSurface(drawDice(tostring(self.hand[2].value),self.hand[2].hold,self.hand[1].lock),SLOT_2[1],SLOT_2[2])
+    screen:drawSurface(drawDice(tostring(self.hand[3].value),self.hand[3].hold,self.hand[1].lock),SLOT_3[1],SLOT_3[2])
+    screen:drawSurface(drawDice(tostring(self.hand[4].value),self.hand[4].hold,self.hand[1].lock),SLOT_4[1],SLOT_4[2])
+    screen:drawSurface(drawDice(tostring(self.hand[5].value),self.hand[5].hold,self.hand[1].lock),SLOT_5[1],SLOT_5[2])
+    screen:drawSurface(drawDice(tostring(self.hand[6].value),self.hand[6].hold,self.hand[1].lock),SLOT_6[1],SLOT_6[2])
     screen:drawSurface(drawButton("ROLL",colors.white),58,2)
     screen:drawSurface(drawButton("SKIP",colors.white),58,12)
     screen:drawSurface(drawButton("QUIT",colors.red),58,30)
@@ -184,9 +186,9 @@ function Player:holdDice_phase()
             term.redirect(diceMon)
             if (xPos >= x1 and xPos <= x2) and (yPos >= y1 and yPos <= y2) then
                 if i >= 1 and i <= 6 then
-                    if self.hand[i].hold == false then
+                    if self.hand[i].hold == false and self.hand[i].lock == false then
                         self.hand[i].hold = true
-                    elseif self.hand[i].hold == true then
+                    elseif self.hand[i].hold == true and self.hand[i].lock == false then
                         self.hand[i].hold = false
                     end
                 elseif i == 7 then -- Roll
