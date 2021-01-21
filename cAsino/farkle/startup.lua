@@ -185,12 +185,12 @@ function Player:checkState(state)
                     elseif diceValue == 6 then
                         score = score + 4800
                     end
-                    self.hand[1].flag_count == true
-                    self.hand[2].flag_count == true
-                    self.hand[3].flag_count == true
-                    self.hand[4].flag_count == true
-                    self.hand[5].flag_count == true
-                    self.hand[6].flag_count == true
+                    self.hand[1].flag_count = true
+                    self.hand[2].flag_count = true
+                    self.hand[3].flag_count = true
+                    self.hand[4].flag_count = true
+                    self.hand[5].flag_count = true
+                    self.hand[6].flag_count = true
                 elseif (match == 5) then
                     debug("Detected a 5 of a kind")
                     valid = true
