@@ -271,8 +271,8 @@ function Player:checkState(state)
                         debug("Detected a 5")
                         valid = true
                 end
+                loop = false
             end
-            loop = false
         end
     end
 return valid, score
