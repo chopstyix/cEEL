@@ -227,14 +227,14 @@ p1 = Player -- User
 p2 = Player -- Computer Opponent
 setup()
 
+while p1.flag_bust == false or p1.flag_skip == false do
 screen:clear(colors.green)
 p1:rollDice()
 p1:drawScreen()
-while p1.flag_bust == false or p1.flag_skip == false do
     if p1:checkState("roll") then
         p1:drawScreen()
         screen:output()
-        os.sleep(5)
+        -- os.sleep(1)
         p1:holdDice_phase()
     else
         p1:drawScreen()
