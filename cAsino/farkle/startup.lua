@@ -254,21 +254,29 @@ function Player:checkState(state)
                             self.hand[i].flag_count = true
                         end
                     end
-                elseif (diceValue == 1) and self.hand[i].flag_count == false then
-                    debug("Detected a 1")
-                    valid = true
-                    score = score + 100
-                    self.hand[i].flag_count = true
-                elseif (diceValue == 5) and self.hand[i].flag_count == false then
-                    debug("Detected a 5")
-                    valid = true
-                    score = score + 50
-                    self.hand[i].flag_count = true
+                elseif (diceValue == 1) then
+                    for i,v in pairs(self.hand) do
+                        if self.hand[i].value == diceValue and self.hand[i].flag_count == false then
+                            self.hand[i].flag_count = true
+                            score = score + 100
+                            debug("Detected a 1")
+                            valid = true
+                        end
+                    end
+                elseif (diceValue == 5) then
+                    for i,v in pairs(self.hand) do
+                        if self.hand[i].value == diceValue and self.hand[i].flag_count == false then
+                            self.hand[i].flag_count = true
+                            score = score + 50
+                            debug("Detected a 5")
+                            valid = true
+                        end
+                    end
                 end
             end
         end
-    print (card_counter())
-    until (card_counter() == 6)
+    print (self:card_counter())
+    until (self:card_counter() == 6)
 return valid, score
 end
 
