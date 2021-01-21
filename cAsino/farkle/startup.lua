@@ -88,8 +88,7 @@ function Player:checkState(state)
     local logtable = {}
     -- I don't understand how this works, but it count's the number of times each diceValue is repeated.
     if state == "hold" then
-        -- print("Checking holds")
-        -- sleep()
+        debug("Checking hold")
         for i,v in pairs(self.hand) do
             if self.hand[i].hold == true then
                 print(self.hand[i].value)
@@ -98,8 +97,7 @@ function Player:checkState(state)
             end
         end
     elseif state == "roll" then
-        --print("Checking rolls")
-        --sleep()
+        debug("Checking rolls")
         for i,v in pairs(self.hand) do
             if self.hand[i].lock == false then
                 print(self.hand[i].value)
@@ -111,11 +109,11 @@ function Player:checkState(state)
 
     local count = countTable(logtable)
     if (count == 6) then
-        -- print("Detected a 6 dice straight")
+        debug("Detected a 6 dice straight")
         valid = true
     elseif (count == 5) then
         if (logtable[1] == 1) and (logtable[5] == 5) then
-        -- print("Detected a 5 dice straight (1 to 5)")
+        debug("Detected a 5 dice straight (1 to 5)")
         valid = true
         elseif (logtable[1] == 2) and (logtable[5] == 6) then
         -- print("Detected a 5 dice straight (2 to 6)")
@@ -123,9 +121,9 @@ function Player:checkState(state)
         end
     else
         for diceValue,match in pairs(logtable) do -- Check for valid match, return a
-        -- print("diceValue: "..diceValue.."  match: "..match)
+        debug("diceValue: "..diceValue.."  match: "..match)
         if (match >= 3) then
-            -- print("Detected a minimum of 3 of a kind")
+            debug("Detected a minimum of 3 of a kind")
             valid = true
         elseif (diceValue == 1 or diceValue == 5) then
             -- print("Detected a 1 or a 5")
@@ -192,7 +190,7 @@ function Player:holdDice_phase()
                         self.hand[i].hold = false
                     end
                 elseif i == 7 then -- Roll
-                    if self.checkState("hold") then
+                    if self:checkState("hold") then
                         for i,v in pairs(self.hand) do
                             if self.hand[i].hold == true then
                                 self.hand[i].hold = false
@@ -220,6 +218,12 @@ function drawButton(text, bg)
     button:fillRect(0,0,textSize+2, 7, bg)
     button:drawText(text, font, 1, 1, colors.black)
     return button
+end
+
+function debug(string)
+    term.redirect(oldTerm)
+    print(string)
+    term.redirect(diceMon)
 end
 
   -- Main Line Code -- 
