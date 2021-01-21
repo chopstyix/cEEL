@@ -258,8 +258,9 @@ function Player:checkState(state)
                     end
                 end
             end
-            for i,v in ipairs(self.hand) do
-                debug("i:"..i.." v:"..v)
+            for i2,v2 in ipairs(self.hand) do
+                debug(i2)
+                debug(v2)
                 if (v == 1) and self.hand[i].flag_count == false then
                         self.hand[i].flag_count = true
                         score = score + 100
